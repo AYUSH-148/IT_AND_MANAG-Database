@@ -1,0 +1,22 @@
+export const Main_Courses = [
+  "B.Sc in Computer Science",
+  "M.Sc in Computer Science",
+  "BCA",
+  "MCA",
+  "B.E in Computer Science",
+  "M.E in Computer Science",
+  "Diploma in IT",
+  "Ph.D. in Computer Science ",
+  "MBA",
+  "BBA",
+  "B.Tech in IT",
+  "M.Tech in IT",
+  "PGDM",
+  "Executive MBA",
+  "MMS",
+  "BMS",
+  "Ph.D. in Management",
+  "Diploma in Business Management",
+  "PGPM",
+  "MPM"
+]
