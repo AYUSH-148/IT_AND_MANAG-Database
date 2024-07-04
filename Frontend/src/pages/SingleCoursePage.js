@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FaStar } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
-import { useCoursesContext } from '../context/courses_context';
+import { Link, useLocation, useParams } from "react-router-dom";
 import { MdInfo } from "react-icons/md";
 import { IoLocationOutline } from "react-icons/io5";
 import { TbWorld } from "react-icons/tb";
@@ -11,12 +10,12 @@ import { TbListDetails } from "react-icons/tb";
 import DotSpinner from '../components/DotSpinner';
 
 const SingleCoursePage = () => {
-
+  const { slug } = useParams();
   const location = useLocation();
   const [id, setId] = useState("");
   const [info, setInfo] = useState(null);
   const [trimmedLocation, setTrimmedLocation] = useState(null);
-  const [lang, setLang] = useState('');
+
   const [revNos, setRevNos] = useState();
 
   useEffect(() => {
@@ -25,7 +24,7 @@ const SingleCoursePage = () => {
     if (tabFromUrl) {
       setId(tabFromUrl);
     }
-  }, [location.search]);
+  }, [slug]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,8 +47,6 @@ const SingleCoursePage = () => {
   useEffect(() => {
     if (info?.location) {
       let tempLoc = info.location.trim();
-      const states = ["Kerala", "Tamil Nadu", "Chennai", "Karnataka"];
-
       if (tempLoc === "Private" || tempLoc === "Government") {
         setTrimmedLocation("Locale, India");
       } else {
@@ -73,7 +70,7 @@ const SingleCoursePage = () => {
               <ul className="space-y-4">
                 <li className='list-none flex justify-between'>
                   <span className='flex items-center'>
-                    <span className='px-2 py-0.5 text-[12px] font-semibold bg-green-400 flex items-center rounded-lg '>{info.rate ?info?.rate: 4.1 } <FaStar className='text-white  ml-3' /></span>
+                    <span className='px-2 py-0.5 text-[12px] font-semibold bg-green-400 flex items-center rounded-lg '>{info.rate ? info?.rate : 4.1} <FaStar className='text-white  ml-3' /></span>
                     <span className='ml-3'>({revNos} Reviews)</span>
                   </span>
                   <button className='pr-2 mr-16'><FaRegHeart className='text-4xl text-gray-600 hover:text-red-500' /></button>
@@ -84,7 +81,7 @@ const SingleCoursePage = () => {
                 </li>
                 <li className='flex items-center'>
                   <span><TbWorld /></span>
-                  <span className='text-lg font-medium ml-2'>Hindi / English {lang}</span>
+                  <span className='text-lg font-medium ml-2'>Hindi / English </span>
                 </li>
                 <li className='flex items-center'>
                   <span><RiClosedCaptioningFill /></span>
@@ -112,10 +109,10 @@ const SingleCoursePage = () => {
           <div className="bg-white text-gray-800 mt-10 py-10">
             <div className='max-w-screen-lg my-10 xl:px-0 px-10 mx-auto'>
               <h1 className='font-bold mb-4 text-4xl'>Courses and Fees Details</h1>
-              <p className='py-4 font-medium font-serif'>{info.description}</p>
+              <p className='py-4 font-medium font-serif'>{info?.description}</p>
             </div>
             <div className="max-w-screen-lg mx-auto px-10 xl:px-0">
-              <h2 className="text-4xl font-bold mb-5">{info.courses && info?.courses.length} Courses are offered by IIT DELHI</h2>
+              <h2 className="text-4xl font-bold mb-5">{info.courses && info?.courses.length} Courses are offered by {info?.title}</h2>
               <div className="grid xl:grid-cols-2  gap-8 ">
                 {info.courses && info?.courses.length > 0 && info?.courses.map((course, index) => {
                   return (
@@ -129,10 +126,18 @@ const SingleCoursePage = () => {
                           <span>Fees (Yearly):</span>
                           <span className='font-semibold'>4-6 Lacks</span>
                         </li>
-                        <li className='flex flex-col'>
-                          <span>Num of Courses:</span>
-                          <span className='font-semibold'>{course.avail_sub_courses && course.avail_sub_courses.length}</span>
+                        {course.exam_accepted?(
+                          <li className='flex flex-col'>
+                          <span>Exam Accepted:</span>
+                          <span className=' font-semibold'>{course.exam_accepted.trim()}</span>
                         </li>
+                        ):
+                          (<li className='flex flex-col'>
+                            <span>No. of Courses:</span>
+                            <span className='font-semibold'>{course.avail_sub_courses && course.avail_sub_courses.length}</span>
+                          </li>)
+                        }
+
                         <li className='flex flex-col  gap-2 text-[14px]'>
                           <Link to="" className='flex-1 rounded w-full py-1 border border-blue-600 text-center'>
                             <button className='text-blue-600'>View Course List</button>

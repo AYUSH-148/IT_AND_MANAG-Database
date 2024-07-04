@@ -2,10 +2,13 @@ import React, { useEffect,useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaStar, FaRegFlag, FaRupeeSign, FaRegHeart } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
+import { useCartContext } from '../context/cart_context';
+
 
 const Course = (props) => {
 
-  const { courseId,title, url, avg_pkg, img, rate, location, type, fees } = props;
+  const {addToCart} = useCartContext();
+  const { courseId, title, url, avg_pkg, img, rate, location, type, fees } = props;
   const [trimmedType, setTrimmedType] = useState(null);
   const [trimmedPkg, setTrimmedPkg] = useState(null);
   const [trimmedLocation, setTrimmedLocation] = useState(null);
@@ -67,7 +70,7 @@ const Course = (props) => {
               <span className=' px-2  flex items-center text-black'><IoLocationOutline className='  mr-1' /> {trimmedLocation}</span>
             </li>
             <li className='flex gap-3'>
-              <span className='text-3xl text-gray-600 cursor-pointer hover:text-red-500'><FaRegHeart /></span>
+              <Link to="/cart" onClick={() => addToCart(courseId,title, url, trimmedPkg, img, rate,trimmedLocation,trimmedType , trimmedFees)}><span className='text-3xl text-gray-600 cursor-pointer hover:text-red-500'><FaRegHeart /></span></Link>
               <span className=' px-2 py-0.5 text-[12px] font-semibold bg-green-400 flex items-center rounded-lg '>{rate ? rate.trim():4.1}<FaStar className='text-white ml-3' /></span>
             </li>
           </ul>
@@ -83,8 +86,7 @@ const Course = (props) => {
           <Link to={`/courses/${slug}?id=${courseId}`} className='py-2 flex-1 border-2 border-blue-600 text-blue-600 rounded text-center'><button className='text-[15px] '>View Courses</button></Link>
         </div>
       </div>
-      {/* <Link to = {`/courses/${id}`} className = "item-btn see-details-btn">See details</Link>
-      <Link to = "/cart" className='item-btn add-to-cart-btn' onClick={() => addToCart(id, image, course_name, creator, discounted_price, category)}>Add to cart</Link> */}
+     
     </div>
   );
 };

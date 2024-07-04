@@ -7,7 +7,7 @@ import {
 
 const cart_reducer = (state, action) => {
     if(action.type === ADD_TO_CART){
-        const tempArr = state.cart.filter((item) => item.courseID === action.payload.courseID);
+        const tempArr = state.cart.filter((item) => item.id === action.payload.id);
         if(tempArr.length < 1){
             return {
                 ...state,

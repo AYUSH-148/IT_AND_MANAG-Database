@@ -1,113 +1,57 @@
 import React from 'react';
 import { useCartContext } from '../context/cart_context';
-import styled from "styled-components";
-import CartItem from "../components/CartItem";
-import {MdClear} from "react-icons/md";
+import { MdClear } from 'react-icons/md';
+import CartItem from '../components/CartItem';
 
 const CartPage = () => {
-  const {cart: cartItems, total_items, total_amount, clearCart} = useCartContext();
+  const { cart: cartItems, total_items, clearCart } = useCartContext();
 
-  if(cartItems.length < 1){
+  if (cartItems.length < 1) {
     return (
-      <NotFoundWrapper>
-        <div className='container'>No items found in the cart.</div>
-      </NotFoundWrapper>
-    )
+      <div className='py-8 text-center font-semibold'>
+        <div className='container mx-auto'>No items found in the cart.</div>
+      </div>
+    );
   }
 
   return (
-    <CartWrapper>
-      <div className='container'>
-        <div className='cart-pg-title'>
-          <h3>Shopping Cart</h3>
+    <div className='py-8 mt-10'>
+      <div className='container mx-auto'>
+        <div className='mb-6'>
+          <h3 className='text-4xl font-semibold'>Shopping Cart</h3>
         </div>
-        <div className='cart-grid grid'>
-          {/* card grid left */}
-          <div className='cart-grid-left'>
-            <div className='flex flex-wrap flex-between'>
-              <div className='cart-count-info'>
-                <span className='fw-7 fs-18'>{total_items}</span> Course in Cart
+        <div className='grid md:grid-cols-3 gap-8'>
+          {/* cart grid left */}
+          <div className='md:col-span-2'>
+            <div className='flex justify-between mb-4'>
+              <div className='font-semibold text-2xl'>
+                <span className='font-bold'>{total_items} </span> Colleges/Universities are saved
               </div>
-              <button type = "button" className='cart-clear-btn flex fs-15 fw-6 text' onClick={() => clearCart()}>
-                <MdClear className='text-pink' />
-                <span className='d-inline-block text-pink'>Clear All</span>
+              <button
+                type='button'
+                className='flex items-center text-pink-500 font-semibold text-2xl'
+                onClick={() => clearCart()}
+              >
+                <MdClear className='mr-1' />
+                <span>Clear All</span>
               </button>
             </div>
 
-            <div className='cart-items-list grid'>
-              {
-                cartItems.map(cartItem => {
-                  return (
-                    <CartItem key = {cartItem.courseID} cartItem = {cartItem} />
-                  )
-                })
-              }
+            <div className='grid gap-4'>
+              {cartItems.map(cartItem => (
+                <CartItem key={cartItem.id} cartItem={cartItem} />
+              ))}
             </div>
           </div>
-          {/* end of grid left */}
-          {/* cart grid right */}
-          <div className='cart-grid-right'>
-            <div className='cart-total'>
-              <span className='d-block fs-18 fw-6'>Total:</span>
-              <div className='cart-total-value fw-8'>${total_amount.toFixed(2)}</div>
-              <button type = "button" className='checkout-btn bg-purple text-white fw-6'>Checkout</button>
-            </div>
+          <div className='font-serif ml-14   text-3xl'>
+            <p className='p-4 rounded shadow-xl text-gray-500 border'>By saving colleges in the cart based on specific courses, users can create a personalized list of institutions that cater to their academic interests and career goals. This helps streamline the decision-making process by focusing on colleges that align with the user's desired field of study.</p>
           </div>
-          {/* end of cart grid right */}
+
         </div>
+        
       </div>
-    </CartWrapper>
-  )
-}
+    </div>
+  );
+};
 
-const NotFoundWrapper = styled.div`
-  padding: 30px 0;
-  font-weight: 600;
-`;
-
-const CartWrapper = styled.div`
-  padding: 30px 0;
-  .card-pg-title{
-    padding: 20px 0 6px 0;
-  }
-  .cart-grid{
-    row-gap: 40px;
-    .cart-grid-left{
-      margin-bottom: 30px;
-    }
-
-    .cart-clear-btn{
-      span{
-        margin-left: 6px;
-      }
-    }
-
-    .cart-items-list{
-      margin-top: 20px;
-      row-gap: 12px;
-    }
-    .cart-total-value{
-      font-size: 34px;
-    }
-    .checkout-btn{
-      padding: 14px 28px;
-      letter-spacing: 1px;
-      margin-top: 12px;
-      transition: var(--transition);
-
-      &:hover{
-        background-color: var(--clr-dark);
-      }
-    }
-    .cart-total{
-      padding-bottom: 50px;
-    }
-
-    @media screen and (min-width: 992px){
-      grid-template-columns: 70% 30%;;
-      column-gap: 32px;
-    }
-  }
-`;
-
-export default CartPage
+export default CartPage;

@@ -2,11 +2,10 @@ import CollegeInfo from "../models/model.js"
 
 
 export const getAlldata = async (req, res, next) => {
+  let query = {};
   try {
     const startIndex = parseInt(req.query.startIndex) || 0;
     const limit = parseInt(req.query.limit) || 9;
-
-    let query = {};
 
     if (req.query.searchTerm) {
       const searchTerm = req.query.searchTerm.trim() ;
@@ -35,6 +34,10 @@ export const getAlldata = async (req, res, next) => {
             { 'courses.avail_sub_courses': { $regex: searchTerm, $options: 'i' } },
           ],
         };
+      }
+    }else if(req.query.id){
+      query = {
+        _id: req.query.id
       }
     }
 
