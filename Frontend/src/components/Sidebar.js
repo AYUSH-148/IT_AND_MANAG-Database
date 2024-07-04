@@ -42,7 +42,7 @@ const Sidebar = () => {
                 value={searchTerm}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown} // Listen for Enter key
-                placeholder="Search courses, colleges/universities"
+                placeholder="Search courses, Institutes"
                 className="pl-12 pr-4 py-3 text-2xl border border-gray-300 rounded-full outline-none w-full"
             />
             <button type="submit" className="absolute left-3 top-1/2 transform -translate-y-1/2 text-3xl text-gray-400 cursor-pointer">

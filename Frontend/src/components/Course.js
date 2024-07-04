@@ -69,7 +69,7 @@ const Course = (props) => {
               <span className=' px-2 mb-1  flex items-center text-black'><FaRegFlag className='  mr-2' /> {trimmedType}</span>
               <span className=' px-2  flex items-center text-black'><IoLocationOutline className='  mr-1' /> {trimmedLocation}</span>
             </li>
-            <li className='flex gap-3'>
+            <li className='flex items-center gap-3'>
               <Link to="/cart" onClick={() => addToCart(courseId,title, url, trimmedPkg, img, rate,trimmedLocation,trimmedType , trimmedFees)}><span className='text-3xl text-gray-600 cursor-pointer hover:text-red-500'><FaRegHeart /></span></Link>
               <span className=' px-2 py-0.5 text-[12px] font-semibold bg-green-400 flex items-center rounded-lg '>{rate ? rate.trim():4.1}<FaStar className='text-white ml-3' /></span>
             </li>

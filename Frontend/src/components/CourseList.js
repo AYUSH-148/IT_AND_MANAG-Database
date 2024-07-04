@@ -1,10 +1,8 @@
 import React from 'react';
 import styled from "styled-components";
 import Tabs from "./Tabs";
-import { useCoursesContext } from '../context/courses_context';
 
 const CourseList = () => {
-  const {courses} = useCoursesContext();
 
   return (
     <CoursesListWrapper>
