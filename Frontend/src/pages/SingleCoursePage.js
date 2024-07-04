@@ -41,7 +41,6 @@ const SingleCoursePage = () => {
         }
       }
     };
-
     fetchData();
     setRevNos(Math.floor(Math.random() * (30 - 5 + 1)) + 5);
   }, [id]);
@@ -53,15 +52,11 @@ const SingleCoursePage = () => {
 
       if (tempLoc === "Private" || tempLoc === "Government") {
         setTrimmedLocation("Locale, India");
-      } else if (states.some(state => tempLoc.includes(state))) {
-        setLang("/ Tamil / Telugu");
-        setTrimmedLocation(tempLoc);
       } else {
         setTrimmedLocation(tempLoc);
       }
     }
   }, [info]);
-  // const { id: courseID, category, image, course_name, description, rating_count, rating_star, students, creator, updated_date, lang, actual_price, discounted_price, what_you_will_learn: learnItems, content } = single_course;
 
   return (
     <div>
@@ -78,7 +73,7 @@ const SingleCoursePage = () => {
               <ul className="space-y-4">
                 <li className='list-none flex justify-between'>
                   <span className='flex items-center'>
-                    <span className='px-2 py-0.5 text-[12px] font-semibold bg-green-400 flex items-center rounded-lg '>{info?.rate} <FaStar className='text-white  ml-3' /></span>
+                    <span className='px-2 py-0.5 text-[12px] font-semibold bg-green-400 flex items-center rounded-lg '>{info.rate ?info?.rate: 4.1 } <FaStar className='text-white  ml-3' /></span>
                     <span className='ml-3'>({revNos} Reviews)</span>
                   </span>
                   <button className='pr-2 mr-16'><FaRegHeart className='text-4xl text-gray-600 hover:text-red-500' /></button>

@@ -1,9 +1,10 @@
 import React from 'react';
-import { MdMenu, MdSearch } from "react-icons/md";
+import { MdMenu } from "react-icons/md";
 import { FaBookmark } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { useSidebarContext } from '../context/sidebar_context';
 import { useCartContext } from '../context/cart_context';
+import SearchBar from './SearchBar';
 
 const Navbar = () => {
   const { total_items } = useCartContext();
@@ -15,14 +16,7 @@ const Navbar = () => {
         <Link to="/" className='text-4xl uppercase tracking-wider font-bold'>
           <span className="text-orange-500">c</span>oursean
         </Link>
-        <div className="relative border-2 rounded-full w-[400px]">
-          <input 
-            type="text" 
-            placeholder="Search courses, colleges/universities" 
-            className="pl-12 pr-4 py-3 text-2xl border border-gray-300 rounded-full outline-none w-full"
-          />
-          <MdSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-3xl text-gray-400 cursor-pointer" />
-        </div>
+        <SearchBar/>
         <div className='flex gap-2 items-center pr-3'>
           <Link to="/cart" className='relative mr-4 text-4xl'>
             <FaBookmark />

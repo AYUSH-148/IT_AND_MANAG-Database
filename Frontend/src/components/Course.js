@@ -18,7 +18,7 @@ const Course = (props) => {
     }
     if (type) {
       let tempType = type.trim(); 
-      if (/\d/.test(tempType)) { 
+      if (/\d/.test(tempType) || tempType==="") { 
         setTrimmedType("Private"); 
       }
       else{

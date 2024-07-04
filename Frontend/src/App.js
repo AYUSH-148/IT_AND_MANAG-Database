@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import ScrollToTop from './components/ScrollToTop';
 import SearchPage from './pages/SearchPage';
+import AutoMoveToTop from './components/Auto_MoveToTop';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path = "/cart" element = {<Cart />} />
       </Routes>
       <ScrollToTop/>
+      <AutoMoveToTop/>
     </BrowserRouter>
   );
 }
