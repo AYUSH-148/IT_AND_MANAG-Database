@@ -35,7 +35,7 @@ const SingleCoursePage = () => {
     const fetchData = async () => {
       if (id) {
         try {
-          const res = await fetch(`${import.meta.env.API}/api/colleges/all?id=${id}`);
+          const res = await fetch(`https://it-and-manag-database.onrender.com/api/colleges/all?id=${id}`);
           const data = await res.json();
           if (data && data.result) {
             setInfo(data.result[0]);

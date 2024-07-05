@@ -46,7 +46,7 @@ const SearchPage = () => {
             const type = urlParams.get("type");
             const s_course = urlParams.get("s_course");
             const fetchFilteredData = async () => {
-                const res = await fetch(`${import.meta.env.API}/api/colleges/filter-all?location=${flocation}&type=${type}&s_course=${s_course}`);
+                const res = await fetch(`https://it-and-manag-database.onrender.com/api/colleges/filter-all?location=${flocation}&type=${type}&s_course=${s_course}`);
                 if (!res.ok) {
                     return;
                 }
