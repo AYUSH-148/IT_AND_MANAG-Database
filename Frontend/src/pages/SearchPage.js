@@ -25,7 +25,7 @@ const SearchPage = () => {
         setSearchTerm(searchTermFromUrl);
         if (searchTerm || !(urlParams.get("location") ||urlParams.get("s_course") ||urlParams.get("type")) ) {
             const fetchData = async () => {
-                const res = await fetch(`${import.meta.env.API}/api/colleges/all?searchTerm=${searchTerm}`);
+                const res = await fetch(`https://it-and-manag-database.onrender.com/api/colleges/all?searchTerm=${searchTerm}`);
                 if (!res.ok) {
                     return;
                 }
@@ -84,7 +84,7 @@ const SearchPage = () => {
     const handleShowMore = async () => {
         const startIndex = info.length;
         try {
-            const res = await fetch(`http://localhost:7000/api/colleges/all?startIndex=${startIndex}`);
+            const res = await fetch(`https://it-and-manag-database.onrender.com/api/colleges/all?startIndex=${startIndex}`);
             const data = await res.json();
             if (res.ok) {
                 setInfo((prev) => [...prev, ...data.result]);
