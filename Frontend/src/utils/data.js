@@ -1,7 +1,9 @@
 export const States = [
-    "--state--",
+    
     "Andhra Pradesh",
-    "Arunachal Pradesh",
+    "Uttar Pradesh",
+    "Uttarakhand",
+    "West Bengal",
     "Delhi",
     "Assam",
     "Bihar",
@@ -23,30 +25,22 @@ export const States = [
     "Sikkim",
     "Tamil Nadu",
     "Telangana",
-    "Uttar Pradesh",
-    "Uttarakhand",
-    "West Bengal"
+   
    
 ]
 
 export const specializationCourses = [
-    "--course--",
-    "Machine Learning",
+   
+    "Computer Science",
     "Artificial Intelligence (AI)",
-    "Cloud Computing",
-    "Data Science",
-    "Cyber Security",
-    "Information Technology Management",
+    "Information Technology ",
     "Software Engineering",
-    "Digital Marketing",
-    "Business Analytics",
-    "Finance and Accounting",
-    "Human Resource Management",
+    "Management",
     "Healthcare Management",
 ];
 
 export const InstituteType = [
-    "--type--",
+   
     "Government",
     "Private",
     "Public"

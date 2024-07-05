@@ -8,18 +8,18 @@ export const getAlldata = async (req, res, next) => {
     const limit = parseInt(req.query.limit) || 9;
 
     if (req.query.searchTerm) {
-      const searchTerm = req.query.searchTerm.trim() ;
-      
+      const searchTerm = req.query.searchTerm.trim();
+
       const titleRegex = { $regex: searchTerm, $options: 'i' };
 
       // Check if title and searchTerm both match more than 2 characters
       const titleMatchLength = await CollegeInfo.countDocuments({ title: titleRegex });
 
-      if ( titleMatchLength > 2) {
+      if (titleMatchLength > 2) {
         // Search only by title if both title and searchTerm match more than 5 characters
         query = { title: titleRegex };
       }
-      else if ( req.query.searchTerm.trim().toLowerCase().includes("government") || req.query.searchTerm.trim().toLowerCase().includes("private")) {
+      else if (req.query.searchTerm.trim().toLowerCase().includes("government") || req.query.searchTerm.trim().toLowerCase().includes("private")) {
         query = {
           type: { $regex: req.query.searchTerm, $options: 'i' }
         };
@@ -35,7 +35,7 @@ export const getAlldata = async (req, res, next) => {
           ],
         };
       }
-    }else if(req.query.id){
+    } else if (req.query.id) {
       query = {
         _id: req.query.id
       }
@@ -45,13 +45,40 @@ export const getAlldata = async (req, res, next) => {
       .skip(startIndex)
       .limit(limit);
 
-    const total = await CollegeInfo.countDocuments(query);
+    
 
     res.status(200).json({
       result,
-      total,
+      total:result.length,
     });
   } catch (error) {
     next(error);
   }
 };
+
+export const getFilteredData = async (req, res, next) => {
+  const { type, location, s_course } = req.query;
+  const formatString = (str) => str.replace(/-/g, ' ');
+
+  const formattedLocation = location ? formatString(location) : '';
+  const formattedCourse = s_course ? formatString(s_course) : '';
+
+  try {
+    const result = await CollegeInfo.find({
+      ...(type && { type }),
+      ...(formattedLocation && { location: { $regex: formattedLocation, $options: 'i' } }),
+      ...(formattedCourse  && {
+        $or: [
+          { 'courses.name': { $regex: formattedCourse , $options: 'i' } },
+          { 'courses.avail_sub_courses': { $regex: formattedCourse , $options: 'i' } },
+        ],
+      }),
+    })
+    res.status(200).json({
+      result,
+      total: result.length,
+    });
+  } catch (error) {
+    next(error);
+  }
+}

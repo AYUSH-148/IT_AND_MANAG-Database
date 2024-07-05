@@ -28,6 +28,7 @@ const SingleCoursePage = () => {
       setId(tabFromUrl);
     }
   }, [slug]);
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -113,13 +114,13 @@ const SingleCoursePage = () => {
           <div className="bg-white text-gray-800 mt-10 py-10">
             <div className='max-w-screen-lg my-10 xl:px-0 px-10 mx-auto'>
               <h1 className='font-bold mb-4 text-4xl'>Courses and Fees Details</h1>
-              <p className='py-4 font-medium font-serif'>{info?.description}</p>
+              <p className='py-4 font-medium font-serif'>{info?.description?info?.description:"--- No INFO ---"}</p>
             </div>
 
             {info.contact.length > 0 &&
               <div className='max-w-screen-lg mx-auto py-4 '>
                 <h1 className='py-10 ml-10 xl:ml-0 text-3xl sm:text-4xl font-bold'>Institute Contact Details</h1>
-                <ul className='px-10 mb-16 text-[15px] clear-start grid grid-cols-2 gap-6'>
+                <ul className='px-10 mb-16 text-[15px]  sm:grid sm:grid-cols-2  sm:gap-x-24 '>
                   <li className='flex items-center gap-x-6 sm:gap-x-14 border-b border-r border-dotted py-4'>
                     <img className='h-14 w-14' src="https://nj1-static.collegedekho.com/_next/static/media/address.c59f2228.svg?width=32&q=80" alt="" />
                     <p>{info.contact[0]}</p>

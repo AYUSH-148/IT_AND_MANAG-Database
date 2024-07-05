@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import Course from './Course';
+import InstituteCard from './InstituteCard';
 
 
 const Tabs = () => {
   const [activeTab, setActiveTab] = useState('B.Tech');
   const [colleges, setColleges] = useState(null);
-  const [showMore, setShowMore] = useState(true);
+ 
   const tabHandler = (category) => {
     setActiveTab(category);
   };
@@ -13,9 +13,7 @@ const Tabs = () => {
     const fetchData = async () => {
       const res = await fetch(`http://localhost:7000/api/colleges/all?searchTerm=${activeTab}`);
       const data = await res.json();
-      if (data.total < 6) {
-        setShowMore(false);
-      }
+      
       setColleges(data.result);
     };
     fetchData();
@@ -28,9 +26,7 @@ const Tabs = () => {
       const data = await res.json();
       if (res.ok) {
         setColleges((prev) => [...prev, ...data.result]);
-        if (data.total < 9) {
-          setShowMore(false);
-        }
+       
       }
     } catch (error) {
       console.log(error.message);
@@ -55,7 +51,7 @@ const Tabs = () => {
 
         <div className='mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3'>
           {colleges?.length > 0 && colleges?.map((college) => (
-            <Course key={college._id} {...college} courseId={college._id} />
+            <InstituteCard key={college._id} {...college} courseId={college._id} />
           ))}
         </div>
 

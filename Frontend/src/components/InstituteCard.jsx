@@ -5,7 +5,7 @@ import { IoLocationOutline } from "react-icons/io5";
 import { useCartContext } from '../context/cart_context';
 
 
-const Course = (props) => {
+const I = (props) => {
 
   const {addToCart} = useCartContext();
   const { courseId, title, url, avg_pkg, img, rate, location, type, fees } = props;
@@ -60,7 +60,10 @@ const Course = (props) => {
   
   return (
     <div className='mb-5 rounded-tr-lg border border-gray-200 shadow-md flex flex-col'>
-      <img className='h-[220px]' src={img.includes("static")?'https://media.collegedekho.com/media/img/institute/crawled_images/-90110_66624.jpg?w=350&h=350':img} alt="Collg_img"/>
+      <div className='max-h-full'>
+          <img className='h-full object-fill object-center self-center' src={img.includes("static")?'https://media.collegedekho.com/media/img/institute/crawled_images/-90110_66624.jpg?w=350&h=350':img} alt="Collg_img"/>
+
+      </div>
       <div className='my-4 px-4 w-full'>
         <h5 className='text-2xl mt-2 w-full text-center px-10  font-bold '>{title} </h5>
         <div className='mt-2 py-2'>
@@ -91,4 +94,4 @@ const Course = (props) => {
   );
 };
 
-export default Course;
+export default I;
