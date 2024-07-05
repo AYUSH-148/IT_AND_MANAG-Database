@@ -4,6 +4,7 @@ import Course from '../components/InstituteCard';
 import DotSpinner from "../components/DotSpinner"
 import { useSidebarContext } from '../context/sidebar_context';
 import { States, specializationCourses, InstituteType } from "../utils/data"
+import FooterCom from '../components/Footer';
 
 
 const SearchPage = () => {
@@ -166,6 +167,7 @@ const SearchPage = () => {
                     <DotSpinner />
                 </div>
             }
+            <FooterCom/>
         </>
     )
 }

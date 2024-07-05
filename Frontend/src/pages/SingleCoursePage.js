@@ -9,6 +9,7 @@ import { RiClosedCaptioningFill } from "react-icons/ri";
 import { FaRegHeart, FaRupeeSign } from "react-icons/fa"
 import { TbListDetails } from "react-icons/tb";
 import DotSpinner from '../components/DotSpinner';
+import FooterCom from '../components/Footer';
 
 const SingleCoursePage = () => {
   const {addToCart} = useCartContext();
@@ -198,7 +199,9 @@ const SingleCoursePage = () => {
           <DotSpinner />
         </div>
       )}
+      <FooterCom/>
     </div>
+    
   );
 }
 

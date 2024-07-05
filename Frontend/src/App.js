@@ -8,7 +8,6 @@ import Sidebar from "./components/Sidebar";
 import ScrollToTop from './components/ScrollToTop';
 import SearchPage from './pages/SearchPage';
 import AutoMoveToTop from './components/Auto_MoveToTop';
-import FooterCom from './components/Footer';
 
 function App() {
   return (
@@ -23,7 +22,7 @@ function App() {
       </Routes>
       <ScrollToTop />
       <AutoMoveToTop />
-      <FooterCom />
+     
     </BrowserRouter>
   );
 }
