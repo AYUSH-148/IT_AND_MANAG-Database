@@ -9,12 +9,11 @@ const schema = new mongoose.Schema(
     },
    
     avg_package:{
-      type: String,
-      default: "--"
+      type: String,   
     },
     url: {
       type: String,
-      default: "https://www.collegedekho.com/"
+      required:true
     },
     img: {
       type: String,
@@ -30,18 +29,21 @@ const schema = new mongoose.Schema(
     },
     type: {
       type: String,
-      required: true
+      required: false
     },
     fees: {
       type: String,
       required: true
     },
     description: {
-      type: String
+      type: String,
+      required:true
     },
+    contact:[String],
     courses: [
       {
         name: String,
+        fees_yearly:[String],
         exam_accepted: String,
         num_courses: Number,
         avail_sub_courses: [String]

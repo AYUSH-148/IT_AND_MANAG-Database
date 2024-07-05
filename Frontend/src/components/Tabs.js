@@ -13,7 +13,7 @@ const Tabs = () => {
     const fetchData = async () => {
       const res = await fetch(`http://localhost:7000/api/colleges/all?searchTerm=${activeTab}`);
       const data = await res.json();
-      if (data.total < 9) {
+      if (data.total < 6) {
         setShowMore(false);
       }
       setColleges(data.result);
@@ -58,19 +58,19 @@ const Tabs = () => {
             <Course key={college._id} {...college} courseId={college._id} />
           ))}
         </div>
-        {showMore && (
-          <>
-            <div className='flex justify-center mt-8'>
-              <button
-                onClick={handleShowMore}
-                className=' text-teal-600 font-semibold self-center hover:underline py-4'
-              >
-                Show more
-              </button>
-            </div>
 
-          </>
-        )}
+        <>
+          <div className='flex justify-center mt-8'>
+            <button
+              onClick={handleShowMore}
+              className=' text-teal-600 font-semibold self-center hover:underline py-4'
+            >
+              Show more
+            </button>
+          </div>
+
+        </>
+
       </div>
     </div>
   );

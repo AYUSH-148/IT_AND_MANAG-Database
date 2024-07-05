@@ -1,6 +1,8 @@
 export const States = [
+    "--state--",
     "Andhra Pradesh",
     "Arunachal Pradesh",
+    "Delhi",
     "Assam",
     "Bihar",
     "Chhattisgarh",
@@ -12,9 +14,6 @@ export const States = [
     "Karnataka",
     "Kerala",
     "Madhya Pradesh",
-   
-]
-export const States2 = [
     "Maharashtra",
     "Manipur",
     "Meghalaya",
@@ -27,8 +26,11 @@ export const States2 = [
     "Uttar Pradesh",
     "Uttarakhand",
     "West Bengal"
+   
 ]
+
 export const specializationCourses = [
+    "--course--",
     "Machine Learning",
     "Artificial Intelligence (AI)",
     "Cloud Computing",
@@ -44,7 +46,8 @@ export const specializationCourses = [
 ];
 
 export const InstituteType = [
-    "Govt",
+    "--type--",
+    "Government",
     "Private",
     "Public"
 ]
