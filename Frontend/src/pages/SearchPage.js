@@ -144,7 +144,7 @@ const SearchPage = () => {
 
             {info.length > 0 ? <div>
                <div className='container py-10 my-14 text-center'>
-               <h1 className='text-[25px]  font-semibold underline'>Showing {searchLength} Results</h1>
+               <h1 className='text-[25px]  font-semibold underline'>Showing {searchLength?searchLength:info.length} Results</h1>
                </div>
                 <div className='container mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3'>
                    

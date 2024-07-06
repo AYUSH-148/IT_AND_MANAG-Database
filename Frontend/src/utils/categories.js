@@ -18,5 +18,5 @@ export const Main_Courses = [
   "Ph.D. in Management",
   "Diploma in Business Management",
   "PGPM",
-  "MPM"
+  
 ]

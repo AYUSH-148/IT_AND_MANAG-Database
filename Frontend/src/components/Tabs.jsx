@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import InstituteCard from './InstituteCard';
-
+import DotSpinner from "../components/DotSpinner"
 
 const Tabs = () => {
   const [activeTab, setActiveTab] = useState('B.Tech');
   const [colleges, setColleges] = useState(null);
- 
+
   const tabHandler = (category) => {
     setActiveTab(category);
   };
@@ -13,7 +13,7 @@ const Tabs = () => {
     const fetchData = async () => {
       const res = await fetch(`https://it-and-manag-database.onrender.com/api/colleges/all?searchTerm=${activeTab}`);
       const data = await res.json();
-      
+
       setColleges(data.result);
     };
     fetchData();
@@ -26,7 +26,7 @@ const Tabs = () => {
       const data = await res.json();
       if (res.ok) {
         setColleges((prev) => [...prev, ...data.result]);
-       
+
       }
     } catch (error) {
       console.log(error.message);
@@ -49,13 +49,12 @@ const Tabs = () => {
           ))}
         </ul>
 
-        <div className='mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3'>
-          {colleges?.length > 0 && colleges?.map((college) => (
-            <InstituteCard key={college._id} {...college} courseId={college._id} />
-          ))}
-        </div>
-
-        <>
+        {colleges? <> 
+          <div className='mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3'>
+            {colleges?.length > 0 && colleges?.map((college) => (
+              <InstituteCard key={college._id} {...college} courseId={college._id} />
+            ))}
+          </div>
           <div className='flex justify-center mt-8'>
             <button
               onClick={handleShowMore}
@@ -65,7 +64,11 @@ const Tabs = () => {
             </button>
           </div>
 
-        </>
+        </>:
+        
+        <DotSpinner/>
+    
+        }
 
       </div>
     </div>
