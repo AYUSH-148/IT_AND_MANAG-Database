@@ -12,14 +12,14 @@ import DotSpinner from '../components/DotSpinner';
 import FooterCom from '../components/Footer';
 
 const SingleCoursePage = () => {
-  const {addToCart} = useCartContext();
+  const { addToCart } = useCartContext();
 
   const { slug } = useParams();
   const location = useLocation();
   const [id, setId] = useState("");
   const [info, setInfo] = useState(null);
   const [trimmedLocation, setTrimmedLocation] = useState(null);
-
+  const [otherInst, setOtherInst] = useState(null);
   const [revNos, setRevNos] = useState();
 
   useEffect(() => {
@@ -28,8 +28,22 @@ const SingleCoursePage = () => {
     if (tabFromUrl) {
       setId(tabFromUrl);
     }
+    const fetchInst = async () => {
+      try {
+        const res = await fetch(`https://it-and-manag-database.onrender.com/api/colleges/all?limit=6&startIndex=${Math.floor(Math.random() * 501)}`);
+        const data = await res.json();
+        if (data && data.result) {
+          setOtherInst(data.result);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    fetchInst();
+
   }, [slug]);
-  
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -63,8 +77,8 @@ const SingleCoursePage = () => {
   return (
     <div className=''>
       {info ? (
-        <div className="bg-gray-100 py-10 font-serif">
-          <div className="max-w-screen-lg mx-auto grid gap-16 lg:grid-cols-2 ">
+        <><div className="bg-gray-100 pt-10 font-serif">
+          <div className="  max-w-screen-lg mx-auto grid gap-16 lg:grid-cols-2 ">
             <div className="space-y-10 px-10 xl:px-0">
               <div>
                 <div className="bg-skin-light mb-4 text-gray-800 uppercase font-bold text-sm inline-block px-3 py-1 rounded">
@@ -78,7 +92,7 @@ const SingleCoursePage = () => {
                     <span className='px-2 py-0.5 text-[12px] font-semibold bg-green-400 flex items-center rounded-lg '>{info.rate ? info?.rate : 4.1} <FaStar className='text-white  ml-3' /></span>
                     <span className='ml-3'>({revNos} Reviews)</span>
                   </span>
-                  <Link to="/cart"  onClick={() => addToCart(info._id, info.title, info.url, info.avg_pkg, info.img, info.rate, info.Location,info.type, info.fees)}><span className='text-4xl text-gray-600 cursor-pointer hover:text-red-500 mr-14 pr-10'><FaRegHeart /></span></Link>
+                  <Link to="/cart" onClick={() => addToCart(info._id, info.title, info.url, info.avg_pkg, info.img, info.rate, info.Location, info.type, info.fees)}><span className='text-4xl text-gray-600 cursor-pointer hover:text-red-500 mr-14 pr-10'><FaRegHeart /></span></Link>
 
                 </li>
                 <li className='flex items-center gap-14 font-medium'>
@@ -106,16 +120,15 @@ const SingleCoursePage = () => {
                 <img
                   src={info.img.includes("static") ? 'https://media.collegedekho.com/media/img/institute/crawled_images/-90110_66624.jpg?w=350&h=350' : info.img}
                   alt="No Image"
-                  className="max-h-[230px] lg:rounded-xl lg:rounded-bl-3xl"
-                />
+                  className="max-h-[230px] lg:rounded-xl lg:rounded-bl-3xl" />
               )}
             </div>
           </div>
 
-          <div className="bg-white text-gray-800 mt-10 py-10">
+          <div className="bg-white text-gray-800 mt-10 py-4">
             <div className='max-w-screen-lg my-10 xl:px-0 px-10 mx-auto'>
               <h1 className='font-bold mb-4 text-4xl'>Courses and Fees Details</h1>
-              <p className='py-4 font-medium font-serif'>{info?.description?info?.description:"--- No INFO ---"}</p>
+              <p className='py-4 font-medium font-serif'>{info?.description ? info?.description : "--- No INFO ---"}</p>
             </div>
 
             {info.contact.length > 0 &&
@@ -165,8 +178,7 @@ const SingleCoursePage = () => {
                           (<li className='flex flex-col'>
                             <span>No. of Courses:</span>
                             <span className='font-semibold'>{course.avail_sub_courses && course.avail_sub_courses.length}</span>
-                          </li>)
-                        }
+                          </li>)}
 
                         <li className='flex flex-col  gap-2 text-[14px]'>
                           <Link to="" className='flex-1 rounded w-full py-1 border border-blue-600 text-center'>
@@ -183,25 +195,33 @@ const SingleCoursePage = () => {
                           course.avail_sub_courses.map((sub_co, ind) => {
                             return (
                               <li key={ind} className='border text-blue-700 bg-blue-100 border-gray-400 px-2 py-1 rounded-xl'>{sub_co}</li>
-                            )
-                          })
-                        }
+                            );
+                          })}
                       </ul>
                     </div>
-                  )
+                  );
                 })}
               </div>
             </div>
           </div>
-        </div>
+
+        </div><div className='my-6 mt-8 py-4 max-w-screen-lg mx-auto '>
+            <h1 className='font-bold py-2 border-b text-center border-gray-400 bg-blue-50 px-4'> Visit other popular Institutes </h1>
+            <ul className='flex px-4 items-center mb-3 py-3 gap-x-14 flex-wrap whitespace-normal'>
+              {otherInst && otherInst.length > 0 && otherInst.map((inst, index) => {
+                return (<li className='text-[15px]cpy-2 cursor-pointer text-blue-400  hover:text-blue-600' key={index}><Link to={`/courses/${inst.title.trim().toLowerCase().replace(/\s+/g, '-')}?id=${inst._id}`}>{inst.title}</Link></li>);
+              })}
+            </ul>
+          </div></>
+
       ) : (
         <div className="flex justify-center items-center min-h-screen">
           <DotSpinner />
         </div>
       )}
-      <FooterCom/>
+      <FooterCom />
     </div>
-    
+
   );
 }
 

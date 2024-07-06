@@ -12,11 +12,10 @@ export const getAlldata = async (req, res, next) => {
 
       const titleRegex = { $regex: searchTerm, $options: 'i' };
 
-      // Check if title and searchTerm both match more than 2 characters
+      // Checking if title and searchTerm both match more than 2 characters
       const titleMatchLength = await CollegeInfo.countDocuments({ title: titleRegex });
 
       if (titleMatchLength > 2) {
-        // Search only by title if both title and searchTerm match more than 5 characters
         query = { title: titleRegex };
       }
       else if (req.query.searchTerm.trim().toLowerCase().includes("government") || req.query.searchTerm.trim().toLowerCase().includes("private")) {
@@ -24,13 +23,11 @@ export const getAlldata = async (req, res, next) => {
           type: { $regex: req.query.searchTerm, $options: 'i' }
         };
       }
-      else {
-        // Search by multiple fields if the above condition is not met
+      else {  
         query = {
           $or: [
             { title: titleRegex },
-            { description: { $regex: searchTerm, $options: 'i' } },
-            { 'courses.name': { $regex: searchTerm, $options: 'i' } },
+             { 'courses.name': { $regex: searchTerm, $options: 'i' } },
             { 'courses.avail_sub_courses': { $regex: searchTerm, $options: 'i' } },
           ],
         };
