@@ -9,7 +9,7 @@ export const getAlldata = async (req, res, next) => {
 
     if (req.query.searchTerm) {
       const searchTerm = req.query.searchTerm.replace(/-/g, ' ').trim();
-
+      console.log(searchTerm)
       const titleRegex = { $regex: searchTerm, $options: 'i' };
 
       const titleMatchDocs = await CollegeInfo.countDocuments({ title: titleRegex });
