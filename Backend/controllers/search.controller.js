@@ -12,9 +12,9 @@ export const getAlldata = async (req, res, next) => {
 
       const titleRegex = { $regex: searchTerm, $options: 'i' };
 
-      const titleMatchLength = await CollegeInfo.countDocuments({ title: titleRegex });
+      const titleMatchDocs = await CollegeInfo.countDocuments({ title: titleRegex });
 
-      if (titleMatchLength > 3) {
+      if (titleMatchDocs === 1) {
         query = { title: titleRegex };
       }
       else if (req.query.searchTerm.trim().toLowerCase().includes("government") || req.query.searchTerm.trim().toLowerCase().includes("private")) {
