@@ -8,14 +8,12 @@ export const getAlldata = async (req, res, next) => {
     const limit = parseInt(req.query.limit) || 9;
 
     if (req.query.searchTerm) {
-      const searchTerm = req.query.searchTerm.replace(/-/g, ' ').trim();
-      console.log(searchTerm)
-      const titleRegex = { $regex: searchTerm, $options: 'i' };
+      const searchTerm = req.query.searchTerm.replace(/-/g, ' ');
 
-      const titleMatchDocs = await CollegeInfo.countDocuments({ title: titleRegex });
+      const titleMatchDocs = await CollegeInfo.countDocuments({ title: searchTerm });
 
       if (titleMatchDocs === 1) {
-        query = { title: titleRegex };
+        query = { title: searchTerm };
       }
       else if (req.query.searchTerm.trim().toLowerCase().includes("government") || req.query.searchTerm.trim().toLowerCase().includes("private")) {
         query = {
