@@ -51,6 +51,9 @@ const SearchPage = () => {
                     return;
                 }
                 const data = await res.json();
+                if(data.result.length<6){
+                    handleShowMore();
+                }
                 setInfo(data.result);
                 setSearchLength(data.total)
                 if (data.result.length === 0) {

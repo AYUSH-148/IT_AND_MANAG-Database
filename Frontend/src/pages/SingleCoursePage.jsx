@@ -207,9 +207,9 @@ const SingleCoursePage = () => {
 
         </div><div className='my-6 mt-8 py-4 max-w-screen-lg mx-auto '>
             <h1 className='font-bold py-2 border-b text-center border-gray-400 bg-blue-50 px-4'> Visit other popular Institutes </h1>
-            <ul className='flex px-4 items-center mb-3 py-3 gap-x-14 flex-wrap whitespace-normal'>
+            <ul className='flex sm:px-4 px-6 items-center mb-3 py-3 gap-x-14 flex-wrap whitespace-normal'>
               {otherInst && otherInst.length > 0 && otherInst.map((inst, index) => {
-                return (<li className='text-[15px]cpy-2 cursor-pointer text-blue-400  hover:text-blue-600' key={index}><Link to={`/courses/${inst.title.trim().toLowerCase().replace(/\s+/g, '-')}?id=${inst._id}`}>{inst.title}</Link></li>);
+                return (<li className='sm:text-[15px] text-[13px]  py-2 cursor-pointer text-blue-400  hover:text-blue-600' key={index}><Link to={`/courses/${inst.title.trim().toLowerCase().replace(/\s+/g, '-')}?id=${inst._id}`}>{inst.title}</Link></li>);
               })}
             </ul>
           </div></>

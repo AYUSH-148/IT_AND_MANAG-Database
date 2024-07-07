@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import InstituteCard from './InstituteCard';
-import DotSpinner from "../components/DotSpinner"
+import DotSpinner from "./DotSpinner"
 
 const Tabs = () => {
   const [activeTab, setActiveTab] = useState('B.Tech');
@@ -55,10 +55,10 @@ const Tabs = () => {
               <InstituteCard key={college._id} {...college} courseId={college._id} />
             ))}
           </div>
-          <div className='flex justify-center mt-8'>
+          <div className='flex justify-center mt-4'>
             <button
               onClick={handleShowMore}
-              className=' text-teal-600 font-semibold self-center hover:underline py-4'
+              className=' text-blue-600 font-semibold self-center hover:underline py-4'
             >
               Show more
             </button>

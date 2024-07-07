@@ -32,11 +32,12 @@ export const States = [
 export const specializationCourses = [
    
     "Computer Science",
+    "Information Technlogy",
     "Artificial Intelligence (AI)",
-    "Information Technology ",
-    "Software Engineering",
-    "Management",
-    "Healthcare Management",
+    "Cloud Computing ",
+    "Data Science",
+    "Cyber Security",
+    
 ];
 
 export const InstituteType = [

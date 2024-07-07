@@ -5,7 +5,7 @@ import FooterCom from '../components/Footer';
 
 const HomePage = () => {
   return (
-    <div className='holder'>
+    <div className='holder '>
       <Hero />
       <CoursesList />
       <FooterCom/>

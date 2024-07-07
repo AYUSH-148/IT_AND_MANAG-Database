@@ -5,7 +5,7 @@ class CollegesSpider(scrapy.Spider):
     name = "colleges"
     allowed_domains = ["collegedekho.com"]
     start_urls = [
-        "https://www.collegedekho.com/pgd-colleges-in-india/",
+        "https://www.collegedekho.com/information-technology/data_management-colleges-in-india/",
     ]
    
     def parse(self, response):
