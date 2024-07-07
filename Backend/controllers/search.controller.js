@@ -8,14 +8,13 @@ export const getAlldata = async (req, res, next) => {
     const limit = parseInt(req.query.limit) || 9;
 
     if (req.query.searchTerm) {
-      const searchTerm = req.query.searchTerm.trim();
+      const searchTerm = req.query.searchTerm.replace(/-/g, ' ').trim();
 
       const titleRegex = { $regex: searchTerm, $options: 'i' };
 
-      // Checking if title and searchTerm both match more than 2 characters
       const titleMatchLength = await CollegeInfo.countDocuments({ title: titleRegex });
 
-      if (titleMatchLength > 2) {
+      if (titleMatchLength > 3) {
         query = { title: titleRegex };
       }
       else if (req.query.searchTerm.trim().toLowerCase().includes("government") || req.query.searchTerm.trim().toLowerCase().includes("private")) {
@@ -84,7 +83,7 @@ export const getNameSuggestions = async(req,res,next)=>{
   const {searchTerm} = req.query;
   try {
     const result = await CollegeInfo.find({
-      title : { $regex: searchTerm.replace(/-/g, ' ').trim(), $options: 'i' }
+      title : { $regex: searchTerm, $options: 'i' }
     },'title')
     res.status(200).json({
       result,
