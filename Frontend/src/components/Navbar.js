@@ -1,6 +1,6 @@
 import React from 'react';
 import { MdMenu } from "react-icons/md";
-import { FaBookmark } from "react-icons/fa";
+import { FaBookmark,FaGithub } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { useSidebarContext } from '../context/sidebar_context';
 import { useCartContext } from '../context/cart_context';
@@ -18,6 +18,7 @@ const Navbar = () => {
         </Link>
         <SearchBar/>
         <div className='flex gap-2 items-center pr-3'>
+          <Link to="https://github.com/AYUSH-148/IT_AND_MANAG-Database/"><FaGithub className='text-4xl mr-3' /></Link>
           <Link to="/cart" className='relative mr-4 text-4xl'>
             <FaBookmark />
             <span className='absolute right-0 top-0 transform translate-x-1/2 -translate-y-1/2 bg-orange-500 text-white text-lg font-bold rounded-full w-6 h-6 flex items-center justify-center'>
