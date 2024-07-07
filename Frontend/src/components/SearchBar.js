@@ -44,9 +44,10 @@ const SearchBar = ({ onSearch }) => {
   };
 
   const handleSuggestionClick = (suggestion) => {
-    setSearchTerm(suggestion);
+    const newSugg = suggestion.replace(/\s+/g, '-')
+    setSearchTerm(newSugg);
     setShowSuggestions(false);
-    navigate(`/category?searchTerm=${suggestion}`);
+    navigate(`/category?searchTerm=${newSugg}`);
   };
 
   const fetchSuggestions = (input) => {

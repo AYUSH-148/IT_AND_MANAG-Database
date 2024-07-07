@@ -84,7 +84,7 @@ export const getNameSuggestions = async(req,res,next)=>{
   const {searchTerm} = req.query;
   try {
     const result = await CollegeInfo.find({
-      title : { $regex: searchTerm, $options: 'i' }
+      title : { $regex: searchTerm.replace(/-/g, ' ').trim(), $options: 'i' }
     },'title')
     res.status(200).json({
       result,
