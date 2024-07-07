@@ -21,17 +21,7 @@ const SearchBar = ({ onSearch }) => {
     const value = event.target.value;
     setSearchTerm(value);
     if (value.trim() !== '') {
-        const fetchData = async () => {
-            const res = await fetch(`https://it-and-manag-database.onrender.com/api/colleges/name?searchTerm=${searchTerm}`);
-            if (!res.ok) {
-                return;
-            }
-            if (res.ok) {
-                const data = await res.json();
-                setSuggestions(data.result);
-            }
-        };
-        fetchData();
+        fetchSuggestions(value)
     } else {
       setSuggestions([]);
       setShowSuggestions(false);
@@ -60,14 +50,18 @@ const SearchBar = ({ onSearch }) => {
   };
 
   const fetchSuggestions = (input) => {
-    // Replace this with actual fetching logic
-    // Example: Fetch suggestions from an API or filter a list
-    const sampleSuggestions = ['Course 1', 'Course 2', 'College 1', 'University 1'];
-    const filteredSuggestions = sampleSuggestions.filter(suggestion =>
-      suggestion.toLowerCase().includes(input.toLowerCase())
-    );
-    setSuggestions(filteredSuggestions);
-    setShowSuggestions(true);
+    const fetchData = async () => {
+        const res = await fetch(`https://it-and-manag-database.onrender.com/api/colleges/name?searchTerm=${input}`);
+        if (!res.ok) {
+            return;
+        }
+        if (res.ok) {
+            const data = await res.json();
+            setSuggestions(data.result);
+            setShowSuggestions(true);
+        }
+    };
+    fetchData();
   };
 
   return (
@@ -86,14 +80,14 @@ const SearchBar = ({ onSearch }) => {
         </button>
       </form>
       {showSuggestions && suggestions.length > 0 && (
-        <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg mt-1 max-h-60 overflow-y-auto">
+        <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg max-h-72 scrollbar-none overflow-y-auto">
           {suggestions.map((suggestion, index) => (
             <li
               key={index}
-              className="px-4 py-2 cursor-pointer hover:bg-gray-200"
+              className="px-4 py-2 text-[14px] text-blue-400 cursor-pointer hover:bg-gray-50 hover:text-blue-500"
               onClick={() => handleSuggestionClick(suggestion.title)}
             >
-              {suggestion.title}
+              {suggestion.title}, 
             </li>
           ))}
         </ul>

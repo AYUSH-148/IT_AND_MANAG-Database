@@ -11,7 +11,7 @@ const Navbar = () => {
   const { openSidebar } = useSidebarContext();
 
   return (
-    <nav className=" bg-white flex h-[60px]  py-14 fixed top-0 w-full ">
+    <nav className=" bg-white flex h-[60px]  py-14 sticky top-0 w-full ">
       <div className='container w-full flex justify-between items-center px-5'>
         <Link to="/" className='text-4xl uppercase tracking-wider font-bold'>
           <span className="text-orange-500 text-5xl">c</span ><span className="text-orange-500 ">o</span>llege <span className='text-orange-600 text-5xl'>Hub</span>

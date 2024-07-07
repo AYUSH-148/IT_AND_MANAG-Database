@@ -88,9 +88,8 @@ const SearchPage = () => {
     };
     
     const handleShowMore = async () => {
-        const startIndex = info.length;
         try {
-            const res = await fetch(`https://it-and-manag-database.onrender.com/api/colleges/all?startIndex=${startIndex}`);
+            const res = await fetch(`https://it-and-manag-database.onrender.com/api/colleges/all?startIndex=${searchLength}`);
             const data = await res.json();
             if (res.ok) {
                 setInfo((prev) => [...prev, ...data.result]);
@@ -163,7 +162,7 @@ const SearchPage = () => {
                 (
                     <button
                         onClick={handleShowMore}
-                        className='text-teal-500 font-semibold text-2xl hover:underline p-7 w-full'
+                        className='text-teal-500 font-semibold text-2xl hover:underline  w-full'
                     >
                         Show More
                     </button>
