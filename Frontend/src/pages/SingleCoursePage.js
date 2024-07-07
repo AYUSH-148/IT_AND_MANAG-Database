@@ -209,7 +209,7 @@ const SingleCoursePage = () => {
             <h1 className='font-bold py-2 border-b text-center border-gray-400 bg-blue-50 px-4'> Visit other popular Institutes </h1>
             <ul className='flex sm:px-4 px-6 items-center mb-3 py-3 gap-x-14 flex-wrap whitespace-normal'>
               {otherInst && otherInst.length > 0 && otherInst.map((inst, index) => {
-                return (<li className='sm:text-[15px] text-[13px]  py-2 cursor-pointer text-blue-400  hover:text-blue-600' key={index}><Link to={`/courses/${inst.title.trim().toLowerCase().replace(/\s+/g, '-')}?id=${inst._id}`}>{inst.title}</Link></li>);
+                return (<li className='sm:text-[15px] text-[13px]  py-2 cursor-pointer text-blue-500 font-semibold hover:underline  hover:text-blue-600' key={index}><Link to={`/courses/${inst.title.trim().toLowerCase().replace(/\s+/g, '-')}?id=${inst._id}`}>{inst.title}</Link></li>);
               })}
             </ul>
           </div></>

@@ -55,10 +55,10 @@ const Tabs = () => {
               <InstituteCard key={college._id} {...college} courseId={college._id} />
             ))}
           </div>
-          <div className='flex justify-center mt-4'>
+          <div className='flex justify-end mb-4'>
             <button
               onClick={handleShowMore}
-              className=' text-blue-600 font-semibold self-center hover:underline py-4'
+              className=' text-blue-600 text-[13px] font-semibold self-center hover:underline py-4 pr-4'
             >
               Show more
             </button>
@@ -66,7 +66,7 @@ const Tabs = () => {
 
         </>:
         
-        <DotSpinner/>
+        <DotSpinner className="text-sm"/>
     
         }
 

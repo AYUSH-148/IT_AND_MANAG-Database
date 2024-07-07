@@ -79,3 +79,18 @@ export const getFilteredData = async (req, res, next) => {
     next(error);
   }
 }
+
+export const getNameSuggestions = async(req,res,next)=>{
+  const {searchTerm} = req.query;
+  try {
+    const result = await CollegeInfo.find({
+      title : { $regex: searchTerm, $options: 'i' }
+    },'title')
+    res.status(200).json({
+      result,
+      total: result.length,
+    });
+  } catch (error) {
+    next(error);
+  }
+}

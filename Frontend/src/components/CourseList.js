@@ -8,8 +8,8 @@ const CourseList = () => {
     <CoursesListWrapper>
       <div className='container'>
         <div className='courses-list-top'>
-          <h2>A broad selection of courses</h2>
-          <p>Choose from 204,000 online video courses with new additions publihsed every month</p>
+          <h2 className='font-semibold'>A broad selection of IT and Management Colleges</h2>
+          <p >Explore around 1000+ IT and Management Institutes with new additions publihsed every month</p>
         </div>
 
         <Tabs />
@@ -21,7 +21,7 @@ const CourseList = () => {
 const CoursesListWrapper = styled.div`
   padding: 40px 0;
   .courses-list-top p{
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
 `;
 

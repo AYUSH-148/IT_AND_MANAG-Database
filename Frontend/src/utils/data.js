@@ -30,18 +30,15 @@ export const States = [
 ]
 
 export const specializationCourses = [
-   
     "Computer Science",
     "Information Technlogy",
-    "Artificial Intelligence (AI)",
+    "AI/ML",
     "Cloud Computing ",
     "Data Science",
     "Cyber Security",
-    
 ];
 
 export const InstituteType = [
-   
     "Government",
     "Private",
     "Public"

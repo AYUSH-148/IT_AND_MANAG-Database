@@ -11,14 +11,14 @@ const Navbar = () => {
   const { openSidebar } = useSidebarContext();
 
   return (
-    <nav className=" bg-white flex h-[60px] shadow-md py-14">
+    <nav className=" bg-white flex h-[60px]  py-14 fixed top-0 w-full ">
       <div className='container w-full flex justify-between items-center px-5'>
         <Link to="/" className='text-4xl uppercase tracking-wider font-bold'>
-          <span className="text-orange-500">c</span>oursean
+          <span className="text-orange-500 text-5xl">c</span ><span className="text-orange-500 ">o</span>llege <span className='text-orange-600 text-5xl'>Hub</span>
         </Link>
         <SearchBar/>
         <div className='flex gap-2 items-center pr-3'>
-          <Link to="https://github.com/AYUSH-148/IT_AND_MANAG-Database/"><FaGithub className='text-4xl mr-3' /></Link>
+          <a href="https://github.com/AYUSH-148/IT_AND_MANAG-Database/" target='_blank'><FaGithub className='text-4xl mr-3' /></a>
           <Link to="/cart" className='relative mr-4 text-4xl'>
             <FaBookmark />
             <span className='absolute right-0 top-0 transform translate-x-1/2 -translate-y-1/2 bg-orange-500 text-white text-lg font-bold rounded-full w-6 h-6 flex items-center justify-center'>
