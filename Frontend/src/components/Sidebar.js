@@ -36,7 +36,7 @@ const Sidebar = () => {
         <MdClose />
       </button>
       <div className='mt-12'>
-      <form onSubmit={handleSubmit} className="relative border-2 rounded-full w-full sm:hidden my-10">
+      <form onSubmit={handleSubmit} className="relative border-2 rounded-full w-full md:hidden my-10">
             <input
                 type="text"
                 value={searchTerm}
@@ -52,7 +52,7 @@ const Sidebar = () => {
         <h6 className='text-4xl font-semibold  mb-10'>Top Categories</h6>
         <ul>
           {Main_Courses.map((category, idx) => (
-            <li className='mb-6 text-2xl font-medium transition-transform duration-300 hover:translate-x-1 hover:underline' key={idx}>
+            <li className='mb-6  text-2xl font-medium transition-transform duration-300 hover:translate-x-1 hover:underline' key={idx}>
               <Link to={`/category?searchTerm=${category}`}>{category.toUpperCase()}</Link>
             </li>
           ))}

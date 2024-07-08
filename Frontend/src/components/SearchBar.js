@@ -68,7 +68,7 @@ const SearchBar = ({ onSearch }) => {
 
   return (
     <div className="relative">
-      <form onSubmit={handleSubmit} className="relative border-2 rounded-full hidden sm:block w-[330px] md:w-[400px]">
+      <form onSubmit={handleSubmit} className="relative border-2 rounded-full hidden md:block w-[330px] md:w-[400px]">
         <input
           type="text"
           value={searchTerm}

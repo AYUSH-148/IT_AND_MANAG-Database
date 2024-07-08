@@ -82,6 +82,9 @@ const SearchPage = () => {
             const formattedLocation = filterData.location ? formatString(filterData.location) : '';
             const formattedCourse = filterData.s_course ? formatString(filterData.s_course) : '';
             navigate(`/category?location=${formattedLocation}&s_course=${formattedCourse}&type=${filterData.type}`)
+            setFilterData({
+                location:filterData.location,type:filterData.type,s_course:filterData.s_course
+            })
             setSearchTerm(null);
         }
     };
