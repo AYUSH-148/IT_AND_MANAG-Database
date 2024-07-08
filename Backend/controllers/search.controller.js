@@ -28,6 +28,7 @@ export const getAlldata = async (req, res, next) => {
         };
       }
     } else if (req.query.id) {
+      console.log(req.query.id)
       query = {
         _id: req.query.id
       }

@@ -109,9 +109,9 @@ const SingleCoursePage = () => {
                 </li>
               </ul>
               <div className='mt-4 flex gap-x-3 pr-16'>
-                <Link to="" className='flex-1 rounded  bg-white py-3 border border-blue-600 text-center'>
+                <a href={info.url} className='flex-1 rounded  bg-white py-3 border border-blue-600 text-center'>
                   <button className='text-blue-600 font-semibold '>View Course List</button>
-                </Link>
+                </a>
                 <button className='rounded flex-1 font-semibold text-white py-3 bg-blue-600'>Shortlist</button>
               </div>
             </div>
@@ -181,12 +181,12 @@ const SingleCoursePage = () => {
                           </li>)}
 
                         <li className='flex flex-col  gap-2 text-[14px]'>
-                          <Link to="" className='flex-1 rounded w-full py-1 border border-blue-600 text-center'>
+                          <a href={info.url} className='flex-1 rounded w-full py-1 border border-blue-600 text-center'>
                             <button className='text-blue-600'>View Course List</button>
-                          </Link>
-                          <Link to={info.url} className='flex-1 rounded px-4 py-1 bg-blue-600 text-center'>
+                          </a>
+                          <a href={info.url} target='_blank' className='flex-1 rounded px-4 py-1 bg-blue-600 text-center'>
                             <button className='text-white'>Get Free counselling</button>
-                          </Link>
+                          </a>
                         </li>
                       </ul>
                       <hr className='h-1 bg-gray-400 my-4' />

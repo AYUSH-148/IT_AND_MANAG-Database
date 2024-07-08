@@ -53,7 +53,7 @@ const SearchBar = ({ onSearch }) => {
 
   const fetchSuggestions = (input) => {
     const fetchData = async () => {
-        const res = await fetch(`http://localhost:7000/api/colleges/name?searchTerm=${input}`);
+        const res = await fetch(`https://it-and-manag-database.onrender.com/api/colleges/name?searchTerm=${input}`);
         if (!res.ok) {
             return;
         }
