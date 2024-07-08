@@ -19,13 +19,12 @@ const SearchPage = () => {
     const [searchLength,setSearchLength] = useState();
 
     useEffect(() => {
-       
         const urlParams = new URLSearchParams(location.search);
         const searchTermFromUrl = urlParams.get('searchTerm');
         setSearchTerm(searchTermFromUrl);
         if (searchTerm || !(urlParams.get("location") ||urlParams.get("s_course") ||urlParams.get("type")) ) {
             const fetchData = async () => {
-                const res = await fetch(`https://it-and-manag-database.onrender.com/api/colleges/all?searchTerm=${searchTerm}`);
+                const res = await fetch(`http://localhost:7000/api/colleges/all?searchTerm=${searchTerm}`);
                 if (!res.ok) {
                     return;
                 }
@@ -89,7 +88,7 @@ const SearchPage = () => {
     
     const handleShowMore = async () => {
         try {
-            const res = await fetch(`https://it-and-manag-database.onrender.com/api/colleges/all?startIndex=${searchLength}`);
+            const res = await fetch(`http://localhost:7000/api/colleges/all?startIndex=${searchLength}`);
             const data = await res.json();
             if (res.ok) {
                 setInfo((prev) => [...prev, ...data.result]);
@@ -137,7 +136,7 @@ const SearchPage = () => {
                         </div>
                     </div>
                     <div className='px-10 ml-[120px] hidden xl:block'>
-                        <h1 className='text-5xl text-gray-600'><span className='bg-gradient-to-tr from-orange-500 to-gray-300 px-2 rounded font-bold mr-1'>Search </span> Page</h1>
+                        <h1 className='text-5xl text-gray-600 pl-16'><span className=' px-1 rounded font-bold'><span className='text-orange-400'>Search</span> </span><span className='font-semibold'> Page</span></h1>
                     </div>
                 </div>
                 <div className='container'>

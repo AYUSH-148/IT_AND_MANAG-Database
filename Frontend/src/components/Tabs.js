@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import InstituteCard from './InstituteCard';
-import DotSpinner from "./DotSpinner"
+
 
 const Tabs = () => {
   const [activeTab, setActiveTab] = useState('B.Tech');
@@ -11,7 +11,7 @@ const Tabs = () => {
   };
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(`https://it-and-manag-database.onrender.com/api/colleges/all?searchTerm=${activeTab}`);
+      const res = await fetch(`http://localhost:7000/api/colleges/all?searchTerm=${activeTab}`);
       const data = await res.json();
 
       setColleges(data.result);
@@ -22,7 +22,7 @@ const Tabs = () => {
   const handleShowMore = async () => {
     const startIndex = colleges.length;
     try {
-      const res = await fetch(`https://it-and-manag-database.onrender.com/api/colleges/all?startIndex=${startIndex}`);
+      const res = await fetch(`http://localhost:7000/api/colleges/all?startIndex=${startIndex}`);
       const data = await res.json();
       if (res.ok) {
         setColleges((prev) => [...prev, ...data.result]);
@@ -65,8 +65,7 @@ const Tabs = () => {
           </div>
 
         </>:
-        
-        <DotSpinner className="text-sm"/>
+        <h2 className="font-semibold text-[18px] my-16 text-center">Loading...</h2>
     
         }
 

@@ -13,7 +13,8 @@ const SearchBar = ({ onSearch }) => {
     const urlParams = new URLSearchParams(location.search);
     const searchTermFromUrl = urlParams.get('searchTerm');
     if (searchTermFromUrl) {
-      setSearchTerm(searchTermFromUrl);
+        const filteredUrl = searchTermFromUrl.replace(/\$/g, ' ')
+        setSearchTerm(filteredUrl);
     }
   }, [location.search]);
 
@@ -44,7 +45,7 @@ const SearchBar = ({ onSearch }) => {
   };
 
   const handleSuggestionClick = (suggestion) => {
-    const newSugg = suggestion.replace(/\s+/g, '-')
+    const newSugg = suggestion.replace(/\s+/g, '$')
     setSearchTerm(newSugg);
     setShowSuggestions(false);
     navigate(`/category?searchTerm=${newSugg}`);
@@ -52,7 +53,7 @@ const SearchBar = ({ onSearch }) => {
 
   const fetchSuggestions = (input) => {
     const fetchData = async () => {
-        const res = await fetch(`https://it-and-manag-database.onrender.com/api/colleges/name?searchTerm=${input}`);
+        const res = await fetch(`http://localhost:7000/api/colleges/name?searchTerm=${input}`);
         if (!res.ok) {
             return;
         }

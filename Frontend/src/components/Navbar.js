@@ -13,8 +13,8 @@ const Navbar = () => {
   return (
     <nav className=" bg-white flex h-[60px]  py-14 sticky top-0 w-full ">
       <div className='container w-full flex justify-between items-center px-5'>
-        <Link to="/" className='text-4xl uppercase tracking-wider font-bold'>
-          <span className="text-orange-500 text-5xl">c</span ><span className="text-orange-500 ">o</span>llege <span className='text-orange-600 text-5xl'>Hub</span>
+        <Link to="/" className='text-4xl uppercase tracking-wider font-bold ' >
+          <span className='py-3 rounded-xl px-2 bg-gradient-to-tr from-orange-500 to-gray-300'><span className="text-5xl ">c</span >ollege </span><span className='text-orange-600 text-5xl ml-1'>Hub</span>
         </Link>
         <SearchBar/>
         <div className='flex gap-2 items-center pr-3'>

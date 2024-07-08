@@ -8,47 +8,44 @@ export const getAlldata = async (req, res, next) => {
     const limit = parseInt(req.query.limit) || 9;
 
     if (req.query.searchTerm) {
-      const searchTerm = req.query.searchTerm.replace(/-/g, ' ');
-
+      const searchTerm = req.query.searchTerm.replace(/\$/g, ' ');
       const titleMatchDocs = await CollegeInfo.countDocuments({ title: searchTerm });
-
+      console.log("searchTerm",searchTerm);
+      console.log("titleMatchDocs",titleMatchDocs);
       if (titleMatchDocs === 1) {
         query = { title: searchTerm };
-      }
-      else if (req.query.searchTerm.trim().toLowerCase().includes("government") || req.query.searchTerm.trim().toLowerCase().includes("private")) {
+      } else if (req.query.searchTerm.trim().toLowerCase().includes("government") || req.query.searchTerm.trim().toLowerCase().includes("private")) {
         query = {
           type: { $regex: req.query.searchTerm, $options: 'i' }
         };
-      }
-      else {  
+      } else {  
         query = {
           $or: [
-            { title: titleRegex },
-             { 'courses.name': { $regex: searchTerm, $options: 'i' } },
-            { 'courses.avail_sub_courses': { $regex: searchTerm, $options: 'i' } },
-          ],
+            { title: { $regex: searchTerm, $options: 'i' } },
+            { 'courses.name': { $regex: searchTerm, $options: 'i' } },
+            { 'courses.avail_sub_courses': { $regex: searchTerm, $options: 'i' } }
+          ]
         };
       }
     } else if (req.query.id) {
       query = {
         _id: req.query.id
       }
-    }
+    } 
 
     const result = await CollegeInfo.find(query)
       .skip(startIndex)
       .limit(limit);
 
-    
-
     res.status(200).json({
       result,
-      total:result.length,
+      total: result.length,
     });
   } catch (error) {
     next(error);
   }
 };
+
 
 export const getFilteredData = async (req, res, next) => {
   const { type, location, s_course } = req.query;
