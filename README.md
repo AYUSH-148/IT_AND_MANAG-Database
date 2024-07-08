@@ -77,7 +77,7 @@ CollegeHub is a web application designed to assist prospective students in India
 ### Web Scraping Setup
 1. Navigate to the `scrapy` directory:
     ```bash
-    cd ../scrapy
+    cd ../scrapyPython
     ```
 
 2. Install Scrapy:
