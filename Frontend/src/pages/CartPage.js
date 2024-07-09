@@ -18,7 +18,7 @@ const CartPage = () => {
     <div className='py-8 mt-10'>
       <div className='container mx-auto'>
         <div className='mb-6'>
-          <h3 className='text-4xl font-semibold'>Shopping Cart</h3>
+          <h3 className='text-4xl font-semibold'>College Cart</h3>
         </div>
         <div className='grid md:grid-cols-3 gap-8'>
           {/* cart grid left */}
