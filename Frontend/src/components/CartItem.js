@@ -58,7 +58,7 @@ const CartItem = ({ cartItem }) => {
           <Link to={`/courses/${slug}?id=${cartItem.id}`} className='py-2 flex-1 border-2 border-blue-600 text-blue-600 rounded text-center'>
             <button className='text-[15px]'>View Courses</button>
           </Link>
-          <button type = "button" className=' text-dark flex ml-14 mr-4' onClick={() => removeFromCart(cartItem.courseID)}><FaTrashAlt/> </button>
+          <button type = "button" className=' text-dark flex ml-14 mr-4' onClick={() => removeFromCart(cartItem._id)}><FaTrashAlt/> </button>
 
         </div>
       </div>
