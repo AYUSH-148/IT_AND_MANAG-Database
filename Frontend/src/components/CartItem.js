@@ -5,6 +5,7 @@ import { useCartContext } from '../context/cart_context';
 import { FaStar, FaRegFlag, FaRupeeSign, FaRegHeart } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 const CartItem = ({ cartItem }) => {
+  // console.log(cartItem.id)
   const [slug,setSlug] = useState(null);
   const { removeFromCart } = useCartContext();
   useEffect(()=>{
@@ -58,7 +59,7 @@ const CartItem = ({ cartItem }) => {
           <Link to={`/courses/${slug}?id=${cartItem.id}`} className='py-2 flex-1 border-2 border-blue-600 text-blue-600 rounded text-center'>
             <button className='text-[15px]'>View Courses</button>
           </Link>
-          <button type = "button" className=' text-dark flex ml-14 mr-4' onClick={() => removeFromCart(cartItem.courseID)}><FaTrashAlt/> </button>
+          <button type = "button" className=' text-dark flex ml-14 mr-4' onClick={() => removeFromCart(cartItem.id)}><FaTrashAlt/> </button>
 
         </div>
       </div>

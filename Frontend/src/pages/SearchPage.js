@@ -17,7 +17,26 @@ const SearchPage = () => {
         location: "", type: "", s_course: ""
     })
     const [searchLength,setSearchLength] = useState();
-
+    useEffect(() => {
+        const urlParams = new URLSearchParams(location.search);
+        const searchTermFromUrl = urlParams.get('searchTerm');
+        if(searchTermFromUrl){
+            setSearchTerm(searchTermFromUrl.replace(/\$/g, ' '));
+        }
+    
+        const flocation = urlParams.get("location") || "";
+        const type = urlParams.get("type") || "";
+        const s_course = urlParams.get("s_course") || "";
+        if(flocation){
+            setFilterData({location:flocation.replace(/-/g, ' '), ...filterData})
+        }
+        if(s_course){
+            setFilterData({s_course:s_course.replace(/-/g, ' '),...filterData})
+        }
+        setFilterData({
+          type,...filterData
+        });
+    },[])
     useEffect(() => {
         const urlParams = new URLSearchParams(location.search);
         const searchTermFromUrl = urlParams.get('searchTerm');
@@ -32,28 +51,26 @@ const SearchPage = () => {
                     const data = await res.json();
                     setInfo(data.result);
                     setSearchLength(data.total)
-                    if (data.result.length === 0) {
-                        handleShowMore();
-                    }
+                    // if (data.result.length === 0) {
+                    //     handleShowMore();
+                    // }
                 }
             };
             fetchData();
             closeSidebar()
         }else if(urlParams.get("location")||urlParams.get("type")||urlParams.get("s_course")){
+            setSearchTerm(null)
             const urlParams = new URLSearchParams(location.search);
             const flocation= urlParams.get("location");
             const type = urlParams.get("type");
             const s_course = urlParams.get("s_course");
-            setFilterData({
-                location:flocation,type,s_course
-            })
             const fetchFilteredData = async () => {
                 const res = await fetch(`https://it-and-manag-database.onrender.com/api/colleges/filter-all?location=${flocation}&type=${type}&s_course=${s_course}`);
                 if (!res.ok) {
                     return;
                 }
                 const data = await res.json();
-                if(data.result.length<6){
+                if(data.result.length<3){
                     handleShowMore();
                 }
                 setInfo(data.result);
@@ -82,10 +99,6 @@ const SearchPage = () => {
             const formattedLocation = filterData.location ? formatString(filterData.location) : '';
             const formattedCourse = filterData.s_course ? formatString(filterData.s_course) : '';
             navigate(`/category?location=${formattedLocation}&s_course=${formattedCourse}&type=${filterData.type}`)
-            setFilterData({
-                location:filterData.location,type:filterData.type,s_course:filterData.s_course
-            })
-            setSearchTerm(null);
         }
     };
     

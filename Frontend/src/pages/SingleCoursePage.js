@@ -115,7 +115,7 @@ const SingleCoursePage = () => {
                 <button className='rounded flex-1 font-semibold text-white py-3 bg-blue-600'>Shortlist</button>
               </div>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-16">
               {info.img && (
                 <img
                   src={info.img.includes("static") ? 'https://media.collegedekho.com/media/img/institute/crawled_images/-90110_66624.jpg?w=350&h=350' : info.img}

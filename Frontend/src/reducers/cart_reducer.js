@@ -20,7 +20,7 @@ const cart_reducer = (state, action) => {
     }
 
     if(action.type === REMOVE_CART_ITEM){
-        const tempCart = state.cart.filter(item => item.courseID !== action.payload);
+        const tempCart = state.cart.filter(item => item.id !== action.payload);
         return {
             ...state,
             cart: tempCart
