@@ -26,6 +26,7 @@ const SearchPage = () => {
         }
     }, [location.search])
     useEffect(() => {
+        setInfo(null);
         setLoading(true)
         const urlParams = new URLSearchParams(location.search);
         const searchTermFromUrl = urlParams.get('searchTerm');
@@ -152,7 +153,7 @@ const SearchPage = () => {
 
             </div>
 
-            {info.length > 0 ? <div>
+            {info && info.length > 0 ? <div>
                 <div className='container py-10 my-14 text-center'>
                     <h1 className='text-[25px]  font-semibold underline'>Showing {searchLength ? searchLength : info.length} Results</h1>
                 </div>
