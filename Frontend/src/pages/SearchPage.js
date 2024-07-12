@@ -43,10 +43,9 @@ const SearchPage = () => {
                     setInfo(data.result);
                     setSearchLength(data.total)
                     setLoading(false)
-                    if (data.result.length === 0) {
-                        handleShowMore();
-                        window.location.reload()
-                    }
+                    // if (data.result.length === 0) {
+                    //     handleShowMore();
+                    // }
                 }
             };
             fetchData();
