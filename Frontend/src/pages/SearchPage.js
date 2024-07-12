@@ -24,13 +24,14 @@ const SearchPage = () => {
         if (searchTermFromUrl) {
             setSearchTerm(searchTermFromUrl);
         }
-    }, [])
+    }, [location.search])
     useEffect(() => {
+        setLoading(true)
         const urlParams = new URLSearchParams(location.search);
         const searchTermFromUrl = urlParams.get('searchTerm');
         setSearchTerm(searchTermFromUrl);
         if (searchTerm || !(urlParams.get("location") || urlParams.get("s_course") || urlParams.get("type"))) {
-            setLoading(true)
+            
             const fetchData = async () => {
                 const res = await fetch(`https://it-and-manag-database.onrender.com/api/colleges/all?searchTerm=${searchTerm}`);
                 if (!res.ok) {
@@ -49,7 +50,7 @@ const SearchPage = () => {
             fetchData();
             closeSidebar()
         } else if (urlParams.get("location") || urlParams.get("type") || urlParams.get("s_course")) {
-            setLoading(true)
+            
             setSearchTerm(null)
             const urlParams = new URLSearchParams(location.search);
             const flocation = urlParams.get("location");
