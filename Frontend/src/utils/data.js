@@ -31,9 +31,9 @@ export const States = [
 
 export const specializationCourses = [
     "Computer Science",
-    "Information Technlogy",
-    "Artifical Intelligence and Machine Learning",
-    "Cloud Computing ",
+    
+    "Artifical Intelligence",
+    "Cloud Computing",
     "Data Science",
     "Cyber Security",
 ];

@@ -133,7 +133,7 @@ const SingleCoursePage = () => {
 
             {info.contact.length > 0 &&
               <div className='max-w-screen-lg mx-auto py-4 '>
-                <h1 className='py-10 ml-10 xl:ml-0 text-3xl sm:text-4xl font-bold'>Institute Contact Details</h1>
+                <h1 className='py-10 ml-10 xl:ml-0 text-3xl sm:text-4xl font-bold'>Contact Details</h1>
                 <ul className='px-10 mb-16 text-[15px]  sm:grid sm:grid-cols-2  sm:gap-x-24 '>
                   <li className='flex items-center gap-x-6 sm:gap-x-14 border-b border-r border-dotted py-4'>
                     <img className='h-14 w-14' src="https://nj1-static.collegedekho.com/_next/static/media/address.c59f2228.svg?width=32&q=80" alt="" />

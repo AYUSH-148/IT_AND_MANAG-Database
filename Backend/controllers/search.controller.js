@@ -8,10 +8,10 @@ export const getAlldata = async (req, res, next) => {
     const limit = parseInt(req.query.limit) || 9;
 
     if (req.query.searchTerm) {
-      const searchTerm = req.query.searchTerm.replace(/\$/g, ' ');
+      const searchTerm = req.query.searchTerm;
+ 
       const titleMatchDocs = await CollegeInfo.countDocuments({ title: searchTerm });
       // console.log("searchTerm",searchTerm);
-      // console.log("titleMatchDocs",titleMatchDocs);
       if (titleMatchDocs === 1) {
         query = { title: searchTerm };
       } else if (req.query.searchTerm.trim().toLowerCase().includes("government") || req.query.searchTerm.trim().toLowerCase().includes("private")) {
@@ -50,19 +50,15 @@ export const getAlldata = async (req, res, next) => {
 
 export const getFilteredData = async (req, res, next) => {
   const { type, location, s_course } = req.query;
-  const formatString = (str) => str.replace(/-/g, ' ');
-
-  const formattedLocation = location ? formatString(location) : '';
-  const formattedCourse = s_course ? formatString(s_course) : '';
-
+  // console.log(type,location,s_course);
   try {
     const result = await CollegeInfo.find({
       ...(type && { type }),
-      ...(formattedLocation && { location: { $regex: formattedLocation, $options: 'i' } }),
-      ...(formattedCourse  && {
-          'courses.avail_sub_courses': { $regex: formattedCourse , $options: 'i' }
+      ...(location && { location: { $regex: location, $options: 'i' } }),
+      ...(s_course  && {
+          'courses.avail_sub_courses': { $regex: s_course , $options: 'i' }
       }),
-    })
+    }) 
     res.status(200).json({
       result,
       total: result.length,

@@ -85,7 +85,7 @@ const I = (props) => {
         </div>
         <hr className='px-2 mt-2' />
         <div className='flex items-center font-semibold gap-3  justify-between my-3'>
-          <button className='text-[14px] py-3 flex-1 bg-blue-600 text-white rounded'>Get Free counselling</button>
+          <a href={url} target='_blank' className='py-3 flex-1 bg-blue-600 text-white rounded text-center'><button className='text-[14px] '>Get Free counselling</button></a>
           <Link to={`/courses/${slug}?id=${courseId}`} className='py-2 flex-1 border-2 border-blue-600 text-blue-600 rounded text-center'><button className='text-[15px] '>View Courses</button></Link>
         </div>
       </div>
