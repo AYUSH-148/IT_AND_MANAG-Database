@@ -49,7 +49,6 @@ const SearchPage = () => {
                 }
             };
             fetchData();
-            closeSidebar()
         } else if (urlParams.get("location") || urlParams.get("type") || urlParams.get("s_course")) {
             
             setSearchTerm(null)
@@ -73,7 +72,7 @@ const SearchPage = () => {
             };
             fetchFilteredData()
         }
-    }, [location.search, searchTerm]);
+    }, [location.search, searchTerm, info]);
 
 
 
