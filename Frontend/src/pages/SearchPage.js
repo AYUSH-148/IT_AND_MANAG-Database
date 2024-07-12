@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import Course from '../components/InstituteCard';
-import DotSpinner from "../components/DotSpinner"
+// import DotSpinner from "../components/DotSpinner"
 import { useSidebarContext } from '../context/sidebar_context';
 import { States, specializationCourses, InstituteType } from "../utils/data"
 import FooterCom from '../components/Footer';
@@ -13,7 +13,7 @@ const SearchPage = () => {
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState(null);
     const location = useLocation();
-    const [loading, setLoading] = useState(false);
+   
     const [filterData, setFilterData] = useState({
         location: "", type: "", s_course: ""
     })
@@ -24,10 +24,11 @@ const SearchPage = () => {
         if (searchTermFromUrl) {
             setSearchTerm(searchTermFromUrl);
         }
+        closeSidebar()
     }, [location.search])
     useEffect(() => {
        
-        setLoading(true)
+       
         const urlParams = new URLSearchParams(location.search);
         const searchTermFromUrl = urlParams.get('searchTerm');
         setSearchTerm(searchTermFromUrl);
@@ -42,7 +43,7 @@ const SearchPage = () => {
                     const data = await res.json();
                     setInfo(data.result);
                     setSearchLength(data.total)
-                    setLoading(false)
+                  
                     // if (data.result.length === 0) {
                     //     handleShowMore();
                     // }
@@ -66,13 +67,13 @@ const SearchPage = () => {
                 }
                 const data = await res.json();
                 setInfo(data.result);
-                setLoading(false);
+               
                 setSearchLength(data.total)
 
             };
             fetchFilteredData()
         }
-    }, [location.search, searchTerm, info]);
+    }, [location.search, searchTerm, setInfo]);
 
 
 
@@ -91,13 +92,12 @@ const SearchPage = () => {
     };
 
     const handleShowMore = async () => {
-        setLoading(true)
+       
         try {
             const res = await fetch(`https://it-and-manag-database.onrender.com/api/colleges/all?startIndex=${searchLength}`);
             const data = await res.json();
             if (res.ok) {
                 setInfo((prev) => [...prev, ...data.result]);
-                setLoading(false);
                 setSearchLength(searchLength + data.total);
             }
         } catch (error) {
@@ -176,9 +176,9 @@ const SearchPage = () => {
                 <div className="min-h-screen container mt-10 flex justify-center font-semibold text-[20px]">No Result!!</div>
 
             }
-            <div className={` justify-center items-center min-h-screen ${loading?"flex":"hidden"}`}>
+            {/* {loading && <div className={` justify-center items-center min-h-screen ${loading?"flex":"hidden"}`}>
                 <DotSpinner />
-            </div>
+            </div>} */}
             <FooterCom />
         </>
     )
