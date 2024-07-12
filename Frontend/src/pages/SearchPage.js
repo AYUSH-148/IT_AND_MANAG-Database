@@ -26,7 +26,7 @@ const SearchPage = () => {
         }
     }, [location.search])
     useEffect(() => {
-        setInfo(null);
+       
         setLoading(true)
         const urlParams = new URLSearchParams(location.search);
         const searchTermFromUrl = urlParams.get('searchTerm');
@@ -43,9 +43,10 @@ const SearchPage = () => {
                     setInfo(data.result);
                     setSearchLength(data.total)
                     setLoading(false)
-                    // if (data.result.length === 0) {
-                    //     handleShowMore();
-                    // }
+                    if (data.result.length === 0) {
+                        handleShowMore();
+                        window.location.reload()
+                    }
                 }
             };
             fetchData();
