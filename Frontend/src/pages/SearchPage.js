@@ -32,7 +32,7 @@ const SearchPage = () => {
         if (searchTerm || !(urlParams.get("location") || urlParams.get("s_course") || urlParams.get("type"))) {
             setLoading(true)
             const fetchData = async () => {
-                const res = await fetch(`http://localhost:7000/api/colleges/all?searchTerm=${searchTerm}`);
+                const res = await fetch(`https://it-and-manag-database.onrender.com/api/colleges/all?searchTerm=${searchTerm}`);
                 if (!res.ok) {
                     return;
                 }
@@ -59,7 +59,7 @@ const SearchPage = () => {
                 location:flocation,type,s_course
             })
             const fetchFilteredData = async () => {
-                const res = await fetch(`http://localhost:7000/api/colleges/filter-all?location=${flocation}&type=${type}&s_course=${s_course}`);
+                const res = await fetch(`https://it-and-manag-database.onrender.com/api/colleges/filter-all?location=${flocation}&type=${type}&s_course=${s_course}`);
                 if (!res.ok) {
                     return;
                 }

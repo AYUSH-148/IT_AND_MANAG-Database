@@ -42,7 +42,7 @@ const SingleCoursePage = () => {
 
     fetchInst();
 
-  }, [slug]);
+  }, [slug,location.search]);
 
 
   useEffect(() => {
@@ -109,18 +109,17 @@ const SingleCoursePage = () => {
                 </li>
               </ul>
               <div className='mt-4 flex gap-x-3 pr-16'>
-                <a href={info.url} className='flex-1 rounded  bg-white py-3 border border-blue-600 text-center'>
+                <a href="#course-list" className='flex-1 rounded  bg-white py-3 border border-blue-600 text-center'>
                   <button className='text-blue-600 font-semibold '>View Course List</button>
                 </a>
-                <button className='rounded flex-1 font-semibold text-white py-3 bg-blue-600'>Shortlist</button>
+                <a href={info.url} target='_blank' rel="noreferrer" className='rounded flex-1 py-3 bg-blue-600 text-center'><button className=' font-semibold text-white  '>Shortlist</button></a>
               </div>
             </div>
             <div className="flex justify-center mt-16">
               {info.img && (
                 <img
                   src={info.img.includes("static") ? 'https://media.collegedekho.com/media/img/institute/crawled_images/-90110_66624.jpg?w=350&h=350' : info.img}
-                  alt="No Image"
-                  className="max-h-[230px] lg:rounded-xl lg:rounded-bl-3xl" />
+                  className="max-h-[230px] lg:rounded-xl lg:rounded-bl-3xl" alt=''/>
               )}
             </div>
           </div>
@@ -149,12 +148,12 @@ const SingleCoursePage = () => {
                   </li>
                   <li className='flex items-center gap-x-6 sm:gap-x-14  border-b border-r border-dotted py-4'>
                     <img className='h-14 w-14' src="https://nj1-static.collegedekho.com/_next/static/media/web.58424917.svg?width=32&q=80" alt="" />
-                    <a href={info.contact[3]} target='_blank' className='text-blue-400 hover:underline hover:text-blue-500'>{info.contact[3]}</a>
+                    <a href={info.contact[3]} target='_blank' rel="noreferrer" className='text-blue-400 hover:underline hover:text-blue-500'>{info.contact[3]}</a>
                   </li>
                 </ul>
 
               </div>}
-            <div className="max-w-screen-lg mx-auto px-10 xl:px-0">
+            <div className="max-w-screen-lg mx-auto px-10 xl:px-0 " id="course-list">
               <h2 className="sm:text-4xl text-3xl  font-bold mb-5">{info.courses && info?.courses.length} Courses are offered by {info?.title}</h2>
               <div className="grid xl:grid-cols-2  gap-8 ">
                 {info.courses && info?.courses.length > 0 && info?.courses.map((course, index) => {
@@ -162,7 +161,7 @@ const SingleCoursePage = () => {
                     <div key={index} className="bg-gray-100 border rounded border-gray-300 px-8 py-4">
                       <div className='flex justify-between mb-10'>
                         <h1 className='font-bold pt-3 text-3xl'>{course?.name}</h1>
-                        <Link to={info.url}><TbListDetails className='text-3xl' /></Link>
+                        <a href={info.url} target='_blank' rel="noreferrer"><TbListDetails className='text-3xl' /></a>
                       </div>
                       <ul className='flex items-start justify-between py-4 font-sans'>
                         <li className='flex flex-col '>
@@ -184,7 +183,7 @@ const SingleCoursePage = () => {
                           <a href={info.url} className='flex-1 rounded w-full py-1 border border-blue-600 text-center'>
                             <button className='text-blue-600'>View Course List</button>
                           </a>
-                          <a href={info.url} target='_blank' className='flex-1 rounded px-4 py-1 bg-blue-600 text-center'>
+                          <a href={info.url} target='_blank' rel="noreferrer" className='flex-1 rounded px-4 py-1 bg-blue-600 text-center'>
                             <button className='text-white'>Get Free counselling</button>
                           </a>
                         </li>
