@@ -82,7 +82,7 @@ const SearchBar = ({ onSearch }) => {
         </button>
       </form>
       {showSuggestions && suggestions.length > 0 && (
-        <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg max-h-80 scrollbar-none overflow-y-auto">
+        <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg max-h-[300px] scrollbar-none overflow-y-auto">
           {suggestions.map((suggestion, index) => (
             <li
               key={index}
