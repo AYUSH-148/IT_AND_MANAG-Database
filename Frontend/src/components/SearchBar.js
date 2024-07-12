@@ -82,11 +82,11 @@ const SearchBar = ({ onSearch }) => {
         </button>
       </form>
       {showSuggestions && suggestions.length > 0 && (
-        <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg max-h-72 scrollbar-none overflow-y-auto">
+        <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg max-h-[300px] scrollbar-none overflow-y-auto">
           {suggestions.map((suggestion, index) => (
             <li
               key={index}
-              className="px-4 py-2 text-[14px] text-blue-400 cursor-pointer hover:bg-gray-50 hover:text-blue-500"
+              className="px-4 py-3 text-[14px] text-blue-400 cursor-pointer hover:bg-gray-50 hover:text-blue-500"
               onClick={() => handleSuggestionClick(suggestion.title)}
             >
               {suggestion.title}, 
