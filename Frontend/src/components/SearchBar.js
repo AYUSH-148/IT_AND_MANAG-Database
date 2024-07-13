@@ -13,8 +13,8 @@ const SearchBar = ({ onSearch }) => {
     const urlParams = new URLSearchParams(location.search);
     const searchTermFromUrl = urlParams.get('searchTerm');
     if (searchTermFromUrl) {
-        const filteredUrl = searchTermFromUrl.replace(/\$/g, ' ')
-        setSearchTerm(filteredUrl);
+      const filteredUrl = searchTermFromUrl.replace(/\$/g, ' ');
+      setSearchTerm(filteredUrl);
     }
   }, [location.search]);
 
@@ -22,7 +22,7 @@ const SearchBar = ({ onSearch }) => {
     const value = event.target.value;
     setSearchTerm(value);
     if (value.trim() !== '') {
-        fetchSuggestions(value)
+      fetchSuggestions(value);
     } else {
       setSuggestions([]);
       setShowSuggestions(false);
@@ -32,7 +32,7 @@ const SearchBar = ({ onSearch }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (searchTerm.trim() !== '') {
-      navigate(`/category?searchTerm=${searchTerm}`)
+      navigate(`/category?searchTerm=${searchTerm}`);
       setShowSuggestions(false);
     }
   };
@@ -44,22 +44,24 @@ const SearchBar = ({ onSearch }) => {
     }
   };
 
-  const handleSuggestionClick = () => {
-    setShowSuggestions(false);
+  const handleSuggestionClick = (suggestionTitle) => {
+    setSearchTerm(suggestionTitle);
+
+    navigate(`/category?searchTerm=${suggestionTitle}`);
     handleSubmit()
+    setShowSuggestions(false);
+    
   };
 
   const fetchSuggestions = (input) => {
     const fetchData = async () => {
-        const res = await fetch(`https://it-and-manag-database.onrender.com/api/colleges/name?searchTerm=${input}`);
-        if (!res.ok) {
-            return;
-        }
-        if (res.ok) {
-            const data = await res.json();
-            setSuggestions(data.result);
-            setShowSuggestions(true);
-        }
+      const res = await fetch(`https://it-and-manag-database.onrender.com/api/colleges/name?searchTerm=${input}`);
+      if (!res.ok) {
+        return;
+      }
+      const data = await res.json();
+      setSuggestions(data.result);
+      setShowSuggestions(true);
     };
     fetchData();
   };
@@ -82,13 +84,13 @@ const SearchBar = ({ onSearch }) => {
       {showSuggestions && suggestions.length > 0 && (
         <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg max-h-[300px] scrollbar-none overflow-y-auto">
           {suggestions.map((suggestion, index) => (
-            <a href={`/category?searchTerm=${suggestion.title}`}><li
-            key={index}
-            className="px-4 py-3 text-[14px] text-blue-400 cursor-pointer hover:bg-gray-50 hover:text-blue-500"
-            onClick={() => handleSuggestionClick()}
-          >
-            {suggestion.title}, 
-          </li></a>
+            <li
+              key={index}
+              className="px-4 py-3 text-[14px] text-blue-400 cursor-pointer hover:bg-gray-50 hover:text-blue-500"
+              onClick={() => handleSuggestionClick(suggestion.title)}
+            >
+              {suggestion.title}
+            </li>
           ))}
         </ul>
       )}
