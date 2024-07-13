@@ -46,8 +46,6 @@ const SearchBar = ({ onSearch }) => {
 
   const handleSuggestionClick = (suggestionTitle) => {
     setSearchTerm(suggestionTitle);
-
-    navigate(`/category?searchTerm=${suggestionTitle}`);
     handleSubmit()
     setShowSuggestions(false);
     
@@ -82,17 +80,17 @@ const SearchBar = ({ onSearch }) => {
         </button>
       </form>
       {showSuggestions && suggestions.length > 0 && (
-        <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg max-h-[300px] scrollbar-none overflow-y-auto">
-          {suggestions.map((suggestion, index) => (
-            <li
-              key={index}
-              className="px-4 py-3 text-[14px] text-blue-400 cursor-pointer hover:bg-gray-50 hover:text-blue-500"
-              onClick={() => handleSuggestionClick(suggestion.title)}
-            >
-              {suggestion.title}
-            </li>
-          ))}
-        </ul>
+         <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg max-h-[300px] scrollbar-none overflow-y-auto">
+         {suggestions.map((suggestion, index) => (
+           <a href={`/category?searchTerm=${suggestion.title}`}><li
+           key={index}
+           className="px-4 py-3 text-[14px] text-blue-400 cursor-pointer hover:bg-gray-50 hover:text-blue-500"
+           onClick={() => handleSuggestionClick()}
+         >
+           {suggestion.title}, 
+         </li></a>
+         ))}
+       </ul>
       )}
     </div>
   );
