@@ -44,10 +44,9 @@ const SearchBar = ({ onSearch }) => {
     }
   };
 
-  const handleSuggestionClick = (suggestion) => {
-    
+  const handleSuggestionClick = () => {
     setShowSuggestions(false);
-  
+    handleSubmit()
   };
 
   const fetchSuggestions = (input) => {
@@ -86,7 +85,7 @@ const SearchBar = ({ onSearch }) => {
             <a href={`/category?searchTerm=${suggestion.title}`}><li
             key={index}
             className="px-4 py-3 text-[14px] text-blue-400 cursor-pointer hover:bg-gray-50 hover:text-blue-500"
-            onClick={() => handleSuggestionClick(suggestion.title)}
+            onClick={() => handleSuggestionClick()}
           >
             {suggestion.title}, 
           </li></a>
