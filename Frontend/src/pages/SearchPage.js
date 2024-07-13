@@ -44,9 +44,9 @@ const SearchPage = () => {
                     setInfo(data.result);
                     setSearchLength(data.total)
                   
-                    // if (data.result.length === 0) {
-                    //     handleShowMore();
-                    // }
+                    if (data.result.length === 0) {
+                        handleShowMore();
+                    }
                 }
             };
             fetchData();
