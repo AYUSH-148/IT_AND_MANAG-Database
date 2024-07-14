@@ -38,8 +38,8 @@ CollegeHub is a web application designed to assist prospective students in India
 ### Backend Setup
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/collegehub.git
-    cd collegehub/backend
+    git clone [https://github.com/AYUSH-148/IT_AND_MANAG-Database.git](https://github.com/AYUSH-148/IT_AND_MANAG-Database.git)
+    cd IT_AND_MANAG-Database
     ```
 
 2. Install backend dependencies:
