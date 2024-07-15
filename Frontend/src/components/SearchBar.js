@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MdSearch } from "react-icons/md";
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useSidebarContext } from '../context/sidebar_context';
 
 const SearchBar = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -8,7 +9,7 @@ const SearchBar = ({ onSearch }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-
+  const { closeSidebar } = useSidebarContext();
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const searchTermFromUrl = urlParams.get('searchTerm');
@@ -34,6 +35,7 @@ const SearchBar = ({ onSearch }) => {
     if (searchTerm.trim() !== '') {
       navigate(`/category?searchTerm=${searchTerm}`);
       setShowSuggestions(false);
+      closeSidebar();
     }
   };
 
