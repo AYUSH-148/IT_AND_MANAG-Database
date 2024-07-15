@@ -65,7 +65,7 @@ const Tabs = () => {
           </div>
 
         </>:
-        <h2 className="font-semibold text-[18px] my-16 text-center">Loading...</h2>
+        <h2 className="font-semibold text-[18px] my-16 mb-10 text-center">Loading...</h2>
     
         }
 
