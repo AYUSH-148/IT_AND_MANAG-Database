@@ -35,7 +35,7 @@ const SearchPage = () => {
         if (searchTerm || !(urlParams.get("location") || urlParams.get("s_course") || urlParams.get("type"))) {
             
             const fetchData = async () => {
-                const res = await fetch(`http://localhost:7000/api/colleges/all?searchTerm=${searchTerm}`);
+                const res = await fetch(`https://it-and-manag-database.onrender.com/api/colleges/all?searchTerm=${searchTerm}`);
                 if (!res.ok) {
                     return;
                 }
