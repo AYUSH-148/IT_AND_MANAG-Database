@@ -48,7 +48,7 @@ const SearchBar = ({ onSearch }) => {
     setSearchTerm(suggestionTitle);
     handleSubmit()
     setShowSuggestions(false);
-    
+
   };
 
   const fetchSuggestions = (input) => {
@@ -66,7 +66,7 @@ const SearchBar = ({ onSearch }) => {
 
   return (
     <div className="relative">
-      <form onSubmit={handleSubmit} className="relative border-2 rounded-full hidden md:block w-[330px] md:w-[400px]">
+      <form onSubmit={handleSubmit} className="relative border-2 rounded-full hidden md:block w-[330px] md:w-[400px] mr-4">
         <input
           type="text"
           value={searchTerm}
@@ -80,18 +80,20 @@ const SearchBar = ({ onSearch }) => {
         </button>
       </form>
       {showSuggestions && suggestions.length > 0 && (
-         <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg max-h-[300px] scrollbar-none overflow-y-auto">
-         {suggestions.map((suggestion, index) => (
-           <a href={`/category?searchTerm=${suggestion.title}`}><li
-           key={index}
-           className="px-4 py-3 text-[14px] text-blue-400 cursor-pointer hover:bg-gray-50 hover:text-blue-500"
-           onClick={() => handleSuggestionClick()}
-         >
-           {suggestion.title}, 
-         </li></a>
-         ))}
-       </ul>
+        <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg max-h-[300px] overflow-y-auto scrollbar-none">
+          {suggestions.map((suggestion, index) => (
+            <a href={`/category?searchTerm=${suggestion.title}`} key={index}>
+              <li
+                className="px-4 py-3 text-[14px] text-blue-400 cursor-pointer hover:bg-gray-50 hover:text-blue-500"
+                onClick={() => handleSuggestionClick()}
+              >
+                {suggestion.title}
+              </li>
+            </a>
+          ))}
+        </ul>
       )}
+
     </div>
   );
 }

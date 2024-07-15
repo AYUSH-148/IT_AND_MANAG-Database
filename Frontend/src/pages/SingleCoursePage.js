@@ -75,7 +75,7 @@ const SingleCoursePage = () => {
   }, [info]);
 
   return (
-    <div className=''>
+    <div className='overflow-none'>
       {info ? (
         <><div className="bg-gray-100 pt-10 font-serif">
           <div className="  max-w-screen-lg mx-auto grid gap-16 lg:grid-cols-2 ">
