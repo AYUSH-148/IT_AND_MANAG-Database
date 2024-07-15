@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { MdSearch } from "react-icons/md";
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation,Link } from 'react-router-dom';
 import { useSidebarContext } from '../context/sidebar_context';
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -46,11 +46,8 @@ const SearchBar = ({ onSearch }) => {
     }
   };
 
-  const handleSuggestionClick = (suggestionTitle) => {
-    setSearchTerm(suggestionTitle);
-    handleSubmit()
+  const handleSuggestionClick = () => {
     setShowSuggestions(false);
-
   };
 
   const fetchSuggestions = (input) => {
@@ -87,7 +84,6 @@ const SearchBar = ({ onSearch }) => {
             <a href={`/category?searchTerm=${suggestion.title}`} key={index}>
               <li
                 className="px-4 py-3 text-[14px] text-blue-400 cursor-pointer hover:bg-gray-50 hover:text-blue-500"
-                onClick={() => handleSuggestionClick()}
               >
                 {suggestion.title}
               </li>

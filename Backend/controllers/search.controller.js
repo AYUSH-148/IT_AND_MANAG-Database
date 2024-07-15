@@ -10,18 +10,20 @@ export const getAlldata = async (req, res, next) => {
     if (req.query.searchTerm) {
       const searchTerm = req.query.searchTerm;
  
-      const titleMatchDocs = await CollegeInfo.countDocuments({ title: searchTerm });
-      // console.log("searchTerm",searchTerm);
-      if (titleMatchDocs === 1) {
-        query = { title: searchTerm };
-      } else if (req.query.searchTerm.trim().toLowerCase().includes("government") || req.query.searchTerm.trim().toLowerCase().includes("private")) {
+      // const titleMatchDocs = await CollegeInfo.countDocuments({ title: searchTerm });
+      // // console.log("searchTerm",searchTerm);
+      // if (titleMatchDocs === 1) {
+      //   console.log("yo yo",searchTerm)
+      //   query = { title: searchTerm };
+      // } 
+      if (req.query.searchTerm.trim().toLowerCase().includes("government") || req.query.searchTerm.trim().toLowerCase().includes("private")) {
         query = {
           type: { $regex: req.query.searchTerm, $options: 'i' }
         };
       } else {  
         query = {
           $or: [
-            { title: { $regex: searchTerm, $options: 'i' } },
+            { title: searchTerm },
             { 'courses.name': { $regex: searchTerm, $options: 'i' } },
             { 'courses.avail_sub_courses': { $regex: searchTerm, $options: 'i' } }
           ]
@@ -33,7 +35,7 @@ export const getAlldata = async (req, res, next) => {
         _id: req.query.id
       }
     } 
-
+    console.log(query)
     const result = await CollegeInfo.find(query)
       .skip(startIndex)
       .limit(limit);
