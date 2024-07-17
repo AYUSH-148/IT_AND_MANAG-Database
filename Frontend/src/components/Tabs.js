@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import InstituteCard from './InstituteCard';
-
+import { FaSpinner } from 'react-icons/fa';
 
 const Tabs = () => {
   const [activeTab, setActiveTab] = useState('B.Tech');
@@ -49,7 +49,7 @@ const Tabs = () => {
           ))}
         </ul>
 
-        {colleges? <> 
+        {colleges ? <>
           <div className='mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3'>
             {colleges?.length > 0 && colleges?.map((college) => (
               <InstituteCard key={college._id} {...college} courseId={college._id} />
@@ -64,9 +64,13 @@ const Tabs = () => {
             </button>
           </div>
 
-        </>:
-        <h2 className="font-semibold text-[18px] my-16 mb-10 text-center">Loading...</h2>
-    
+        </> :
+         <div className="flex justify-center items-center h-[40vh]">
+         <div className="relative w-20 h-20">
+            <FaSpinner className="animate-spin text-blue-400" size={50} />
+         </div>
+       </div>
+
         }
 
       </div>
