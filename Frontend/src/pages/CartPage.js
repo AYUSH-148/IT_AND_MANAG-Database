@@ -43,7 +43,7 @@ const CartPage = () => {
               ))}
             </div>
           </div>
-          <div className='font-serif sm:ml-14   text-3xl'>
+          <div className='font-serif sm:ml-14 hidden sm:block text-2xl  md:text-3xl'>
             <p className='p-4 rounded shadow-xl text-gray-500 border'>By saving colleges in the cart based on specific courses, users can create a personalized list of institutions that cater to their academic interests and career goals. This helps streamline the decision-making process by focusing on colleges that align with the user's desired field of study.</p>
           </div>
 
